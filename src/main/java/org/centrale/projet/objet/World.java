@@ -6,6 +6,7 @@ import java.util.Random;
  * World Class
  *
  * @author Groupe 10
+ * @version 0.1
  */
 public class World {
 
@@ -20,9 +21,13 @@ public class World {
 
   public World() {
     this.worldSize = 100; // Valeur aléatoire pour l'instant
-    this.creeMondeAlea(); // Called inside the constructor for simplicity's sake
+    this.creeMondeAlea();
   }
 
+  /**
+   * Generates a "random world" by instanciating the 4 protagonists and assigning
+   * them random positions
+   */
   public void creeMondeAlea() {
     Random rInt = new Random(); // Random integer generator
     // Get a random world position

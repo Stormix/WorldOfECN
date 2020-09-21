@@ -1,7 +1,12 @@
 package org.centrale.projet.objet;
 
-
-public class TestSeance2{
+/**
+ * Test Class for TP3
+ *
+ * @author Groupe 10
+ * @version 0.1
+ */
+public class TestSeance2 {
   public static void main(String[] args) {
     // Initialize a new game world
     World game = new World();

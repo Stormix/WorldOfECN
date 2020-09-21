@@ -3,23 +3,51 @@ package org.centrale.projet.objet;
 import java.util.Random;
 
 /**
+ * Classe Personnage
  *
  * @author Groupe 10
+ * @version 0.1
  */
 
 public class Personnage {
+  // Nom du personnage
   private String nom;
+  // points vie
   private int ptVie;
+  // points mana
   private int ptMana;
+  // pourcentage attaque
   private int pourcentageAtt;
+  // pourcentage par ?
   private int pourcentagePar;
+  // pourcentage magie
   private int pourcentageMag;
+  // pourcentage resistance magie
   private int pourcentageResistMag;
+  // degre d'attaque
   private int degAtt;
+  // degre magie
   private int degMag;
+  // distance d'attaque maximal
   private int distAttMax;
+  // position du personnage dans le monde
   private Point2D pos;
 
+  /**
+   * Constructeur Personnage
+   *
+   * @param nom     Nom du personnage
+   * @param ptV     points vie
+   * @param ptM     points mana
+   * @param pA      pourcentage attaque
+   * @param pP      pourcentage par ?
+   * @param pM      pourcentage magie
+   * @param rM      pourcentage resistance magie
+   * @param dA      degre d'attaque
+   * @param dM      degre magie
+   * @param distMax distance d'attaque maximal
+   * @param pos     position du personnage dans le monde
+   */
   public Personnage(String nom, int ptV, int ptM, int pA, int pP, int pM, int rM, int dA, int dM, int distMax,
       Point2D pos) {
     this.nom = nom;
@@ -35,6 +63,11 @@ public class Personnage {
     this.pos = pos;
   }
 
+  /**
+   * Constructeur du Personnage à partir d'un objet personnage
+   *
+   * @param perso objet Personnage
+   */
   public Personnage(Personnage perso) {
     this.nom = perso.nom;
     this.ptVie = perso.ptVie;
@@ -49,6 +82,9 @@ public class Personnage {
     this.pos = perso.pos;
   }
 
+  /**
+   * Empty constructor
+   */
   public Personnage() {
   }
 
@@ -140,6 +176,9 @@ public class Personnage {
     this.pos = pos;
   }
 
+  /**
+   * Move the entity to one of its neighbour positions
+   */
   public void deplace() {
     Random rInt = new Random();
     int dx = 0;
@@ -155,12 +194,16 @@ public class Personnage {
 
   @Override
   public String toString() {
-    // return "Personnage: {" + " nom='" + getNom() + "'" + ", ptVie='" + getPtVie() + "'" + ", ptMana='" + getPtMana()
-    //     + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'" + ", pourcentagePar='" + getPourcentagePar() + "'"
-    //     + ", pourcentageMag='" + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag()
-    //     + "'" + ", degAtt='" + getDegAtt() + "'" + ", degMag='" + getDegMag() + "'" + ", distAttMax='" + getDistAttMax()
-    //     + "'" + ", pos='" + getPos() + "'" + "}";
-    return "Personnage ("+getNom()+") en position: "+getPos();
+    // return "Personnage: {" + " nom='" + getNom() + "'" + ", ptVie='" + getPtVie()
+    // + "'" + ", ptMana='" + getPtMana()
+    // + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'" + ",
+    // pourcentagePar='" + getPourcentagePar() + "'"
+    // + ", pourcentageMag='" + getPourcentageMag() + "'" + ",
+    // pourcentageResistMag='" + getPourcentageResistMag()
+    // + "'" + ", degAtt='" + getDegAtt() + "'" + ", degMag='" + getDegMag() + "'" +
+    // ", distAttMax='" + getDistAttMax()
+    // + "'" + ", pos='" + getPos() + "'" + "}";
+    return "Personnage (" + getNom() + ") en position: " + getPos();
   }
 
   public void affiche() {

@@ -1,9 +1,10 @@
 package org.centrale.projet.objet;
 
 /**
- * First test class
+ * Test Class for TP2
  *
  * @author Groupe 10
+ * @version 0.1
  */
 public class TestSeance1 {
   public static void main(String[] args) {

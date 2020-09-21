@@ -3,18 +3,33 @@ package org.centrale.projet.objet;
 import java.util.Random;
 
 /**
- * Class Monstre
+ * Classe Monstre
  *
  * @author Groupe 10
+ * @version 0.1
  */
 
 public class Monstre {
+  // points vie
   private int ptVie;
+  // pourcentage attaque
   private int pourcentageAtt;
+  // pourcentage par ?
   private int pourcentagePar;
+  // distance d'attaque maximal
   private int degAtt;
+  // position du personnage dans le monde
   private Point2D pos;
 
+  /**
+   * Constructeur Monstre
+   *
+   * @param ptV points vie
+   * @param pA  pourcentage attaque
+   * @param pP  pourcentage par ?
+   * @param dA  degre d'attaque
+   * @param pos position du personnage dans le monde
+   */
   public Monstre(int ptV, int pA, int pP, int dA, Point2D pos) {
     this.ptVie = ptV;
     this.pourcentageAtt = pA;
@@ -23,6 +38,11 @@ public class Monstre {
     this.pos = pos;
   }
 
+  /**
+   * Constructeur d'un Monstre à partir d'un objet Monstre
+   *
+   * @param m objet Monstre
+   */
   public Monstre(Monstre m) {
     this.ptVie = m.ptVie;
     this.pourcentageAtt = m.pourcentageAtt;
@@ -31,6 +51,9 @@ public class Monstre {
     this.pos = m.pos;
   }
 
+  /**
+   * Empty constructor
+   */
   public Monstre() {
   }
 
@@ -78,6 +101,9 @@ public class Monstre {
     this.pos.setPosition(pos.getX(), pos.getY());
   }
 
+  /**
+   * Move the entity to one of its neighbour positions
+   */
   public void deplace() {
     Random rInt = new Random();
     int dx = 0;
@@ -94,9 +120,11 @@ public class Monstre {
 
   @Override
   public String toString() {
-    // return "Monstre: {" + " ptVie='" + getPtVie() + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'"
-    //     + ", pourcentagePar='" + getPourcentagePar() + "'" + ", degAtt='" + getDegAtt() + "'" + ", pos='" + getPos()
-    //     + "'" + "}";
+    // return "Monstre: {" + " ptVie='" + getPtVie() + "'" + ", pourcentageAtt='" +
+    // getPourcentageAtt() + "'"
+    // + ", pourcentagePar='" + getPourcentagePar() + "'" + ", degAtt='" +
+    // getDegAtt() + "'" + ", pos='" + getPos()
+    // + "'" + "}";
 
     return "Monstre en position: " + getPos();
   }
