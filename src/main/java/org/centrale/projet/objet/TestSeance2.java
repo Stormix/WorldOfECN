@@ -8,41 +8,33 @@ package org.centrale.projet.objet;
  */
 public class TestSeance2 {
   public static void main(String[] args) {
+
     // Initialize a new game world
     World game = new World();
 
     // Display the different characters with a small separator
-    System.out.println("----");
+    System.out.println("---- \n");
+    game.getRobin().affiche();
 
-    game.getRobin().affiche(); // Initial position
-    game.getRobin().deplace(); // Move randomly
-    game.getRobin().affiche(); // Show updated position
-    game.getRobin().deplace(); // Move randomly
-    game.getRobin().affiche(); // Show updated position
-    game.getRobin().deplace(); // Move randomly
-    game.getRobin().affiche(); // Show updated position
-
-    System.out.println("----");
+    System.out.println("---- \n");
     game.getPeon().affiche();
-    game.getPeon().deplace(); // Move randomly
-    game.getPeon().affiche(); // Show updated position
-    game.getPeon().deplace(); // Move randomly
-    game.getPeon().affiche(); // Show updated position
-    game.getPeon().deplace(); // Move randomly
-    game.getPeon().affiche(); // Show updated position
-    game.getPeon().deplace(); // Move randomly
-    game.getPeon().affiche(); // Show updated position
 
-    System.out.println("----");
-    game.getBugs().affiche();
-    game.getBugs().deplace(); // Move randomly
-    game.getBugs().affiche(); // Show updated position
-    game.getBugs().deplace(); // Move randomly
-    game.getBugs().affiche(); // Show updated position
-    game.getBugs().deplace(); // Move randomly
-    game.getBugs().affiche(); // Show updated position
-    game.getBugs().deplace(); // Move randomly
-    game.getBugs().affiche(); // Show updated position
+    System.out.println("---- \n");
+    game.getGrosBill().affiche();
 
+    System.out.println("---- \n");
+    game.getGuillaumeT().affiche();
+
+    System.out.println("---- \n");
+    game.getMerlin().affiche();
+
+    System.out.println("---- \n");
+    game.getBugs1().affiche();
+
+    System.out.println("---- \n");
+    game.getBugs2().affiche();
+
+    System.out.println("---- \n");
+    game.getWolfie().affiche();
   }
 }

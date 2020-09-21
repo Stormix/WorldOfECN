@@ -17,6 +17,6 @@ public class TestSeance21 {
     game.getRobin().affiche();
 
     System.out.println("---- \n");
-    game.getGuillomeT().affiche();
+    game.getGuillaumeT().affiche();
   }
 }

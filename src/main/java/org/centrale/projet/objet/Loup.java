@@ -1,16 +1,16 @@
 package org.centrale.projet.objet;
 
 /**
- * Classe Lapin
+ * Classe Loup
  *
  * @author Groupe 10
  * @version 0.1
  */
 
-public class Lapin extends Monstre {
+public class Loup extends Monstre {
 
   /**
-   * Constructeur Lapin
+   * Constructeur Loup
    *
    * @param pV    points vie
    * @param pA    pourcentage attaque
@@ -19,22 +19,26 @@ public class Lapin extends Monstre {
    * @param p     position du personnage dans le monde
    * @param ptPar point par?
    */
-  public Lapin(int pV, int pA, int pP, int dA, Point2D p, int ptPar) {
+  public Loup(int pV, int pA, int pP, int dA, Point2D p, int ptPar) {
     super(pV, pA, pP, dA, p, ptPar);
   }
 
   /**
-   * Constructeur d'un Lapin à partir d'un objet Lapin
+   * Constructeur d'un Loup à partir d'un objet Loup
    *
-   * @param l objet Lapin
+   * @param l objet Loup
    */
-  public Lapin(Lapin l) {
+  public Loup(Loup l) {
     super(l);
   }
 
   /**
    * Empty constructor
    */
-  public Lapin() {
+  public Loup() {
+  }
+
+  public void combattre(Creature c) {
+
   }
 }

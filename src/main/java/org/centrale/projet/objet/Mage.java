@@ -1,18 +1,19 @@
 package org.centrale.projet.objet;
 
 /**
- * Classe Paysan
+ * Classe Mage
  *
  * @author Groupe 10
  * @version 0.1
  */
 
-public class Paysan extends Personnage {
+public class Mage extends Personnage {
   /**
-   * Constructeur Paysan
+   * Constructeur Mage
    *
    * @param nom     Nom du personnage
    * @param pV      points vie
+   * @param ptMana  points Mana
    * @param pA      pourcentage attaque
    * @param pP      pourcentage par ?
    * @param pM      pourcentage magie
@@ -20,32 +21,36 @@ public class Paysan extends Personnage {
    * @param dA      degre d'attaque
    * @param dM      degre magie
    * @param distMax distance d'attaque maximal
-   * @param p       position du personnage dans le monde
+   * @param pos     position du personnage dans le monde
+   * @param nbF     nombre de flèches que posséde l'Mage
    */
-  public Paysan(String nom, int pV, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D p) {
-    super(nom, pV, 0, pA, pP, pM, rM, dA, dM, distMax, p);
+  public Mage(String nom, int pV, int ptMana, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos) {
+    super(nom, pV, ptMana, pA, pP, pM, rM, dA, dM, distMax, pos);
   }
 
   /**
-   * Constructeur d'un Paysan à partir d'un objet Paysan
+   * Constructeur d'un Mage à partir d'un objet Mage
    *
-   * @param p objet Paysan
+   * @param a objet Mage
    */
-  public Paysan(Paysan p) {
-    super(p);
+  public Mage(Mage a) {
+    super(a);
   }
 
   /**
    * Empty constructor
    */
-  public Paysan() {
+  public Mage() {
   }
 
   @Override
   public String toString() {
-    return "Paysan {" + " nom='" + getNom() + "'" + ", ptMana='" + getPtMana() + "'" + ", pourcentageMag='"
+    return "Mage {" + " nom='" + getNom() + "'" + ", ptMana='" + getPtMana() + "'" + ", pourcentageMag='"
         + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag() + "'" + ", degMag='"
         + getDegMag() + "'" + ", distAttMax='" + getDistAttMax() + "'" + "}";
   }
 
+  public void combattre(Creature c) {
+
+  }
 }

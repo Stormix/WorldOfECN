@@ -47,30 +47,32 @@ public class Archer extends Personnage {
   public Archer() {
   }
 
-  public int getNbFleches() {
+  public int getNbF() {
     return this.nbF;
   }
 
-  public void setNbFleches(int nbF) {
+  public void setNbF(int nbF) {
     this.nbF = nbF;
-  }
-
-  @Override
-  public String toString() {
-    // return "Archer: {" + " nom='" + getNom() + "'" + ", ptVie='" + getPtVie() +
-    // "'" + ", ptMana='" + getPtMana() + "'"
-    // + ", pourcentageAtt='" + getPourcentageAtt() + "'" + ", pourcentagePar='" +
-    // getPourcentagePar() + "'"
-    // + ", pourcentageMag='" + getPourcentageMag() + "'" + ",
-    // pourcentageResistMag='" + getPourcentageResistMag()
-    // + "'" + ", degAtt='" + getDegAtt() + "'" + ", degMag='" + getDegMag() + "'" +
-    // ", distAttMax='" + getDistAttMax()
-    // + "'" + ", pos='" + getPos() + "'" + ", nbF='" + getNbFleches() + "'" + "}";
-
-    return "Archer (" + getNom() + ") en position: " + getPos();
   }
 
   public void affiche() {
     System.out.println(this);
+  }
+
+  @Override
+  public String toString() {
+    return "Archer {" +
+      " nom='" + getNom() + "'" +
+      ", ptMana='" + getPtMana() + "'" +
+      ", pourcentageMag='" + getPourcentageMag() + "'" +
+      ", pourcentageResistMag='" + getPourcentageResistMag() + "'" +
+      ", degMag='" + getDegMag() + "'" +
+      ", distAttMax='" + getDistAttMax() + "'" +
+      " nbF='" + getNbF() + "'" +
+      "}";
+  }
+
+  public void combattre(Creature c) {
+
   }
 }

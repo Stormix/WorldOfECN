@@ -20,9 +20,9 @@ public class TestSeance1 {
     game.getPeon().affiche();
 
     System.out.println("---- \n");
-    game.getBugs().affiche();
+    game.getBugs1().affiche();
 
     System.out.println("---- \n");
-    game.getBunny().affiche();
+    game.getBugs2().affiche();
   }
 }

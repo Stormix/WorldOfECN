@@ -76,4 +76,8 @@ public class Point2D {
     this.x = x;
     this.y = y;
   }
+
+  public float distance(Point2D p) {
+    return (float) Math.sqrt((p.getX() - this.x ) * (p.getX() - this.x) + (p.getY() - this.y) * (p.getY() - this.y));
+  }
 }

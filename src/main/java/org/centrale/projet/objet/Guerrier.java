@@ -1,15 +1,15 @@
 package org.centrale.projet.objet;
 
 /**
- * Classe Paysan
+ * Classe Guerrier
  *
  * @author Groupe 10
  * @version 0.1
  */
 
-public class Paysan extends Personnage {
+public class Guerrier extends Personnage {
   /**
-   * Constructeur Paysan
+   * Constructeur Guerrier
    *
    * @param nom     Nom du personnage
    * @param pV      points vie
@@ -20,32 +20,36 @@ public class Paysan extends Personnage {
    * @param dA      degre d'attaque
    * @param dM      degre magie
    * @param distMax distance d'attaque maximal
-   * @param p       position du personnage dans le monde
+   * @param pos     position du personnage dans le monde
+   * @param nbF     nombre de flèches que posséde l'Guerrier
    */
-  public Paysan(String nom, int pV, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D p) {
-    super(nom, pV, 0, pA, pP, pM, rM, dA, dM, distMax, p);
+  public Guerrier(String nom, int pV, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos) {
+    super(nom, pV, 0, pA, pP, pM, rM, dA, dM, distMax, pos);
   }
 
   /**
-   * Constructeur d'un Paysan à partir d'un objet Paysan
+   * Constructeur d'un Guerrier à partir d'un objet Guerrier
    *
-   * @param p objet Paysan
+   * @param a objet Guerrier
    */
-  public Paysan(Paysan p) {
-    super(p);
+  public Guerrier(Guerrier a) {
+    super(a);
   }
 
   /**
    * Empty constructor
    */
-  public Paysan() {
+  public Guerrier() {
   }
 
   @Override
   public String toString() {
-    return "Paysan {" + " nom='" + getNom() + "'" + ", ptMana='" + getPtMana() + "'" + ", pourcentageMag='"
+    return "Guerrier {" + " nom='" + getNom() + "'" + ", ptMana='" + getPtMana() + "'" + ", pourcentageMag='"
         + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag() + "'" + ", degMag='"
         + getDegMag() + "'" + ", distAttMax='" + getDistAttMax() + "'" + "}";
   }
 
+  public void combattre(Creature c) {
+
+  }
 }
