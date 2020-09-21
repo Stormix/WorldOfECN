@@ -1,8 +1,10 @@
 package org.centrale.projet.objet;
 
+import java.util.Random;
+
 /**
  * Class Monstre
- * 
+ *
  * @author Groupe 10
  */
 
@@ -76,11 +78,27 @@ public class Monstre {
     this.pos.setPosition(pos.getX(), pos.getY());
   }
 
+  public void deplace() {
+    Random rInt = new Random();
+    int dx = 0;
+    int dy = 0;
+
+    while (dx == 0 && dy == 0) {
+      dx = rInt.nextInt(3) - 1;
+      dy = rInt.nextInt(3) - 1;
+    }
+
+    System.out.println("Déplacement de: Dx: " + dx + ", Dy: " + dy);
+    this.pos.translate(dx, dy);
+  }
+
   @Override
   public String toString() {
-    return "Monstre: {" + " ptVie='" + getPtVie() + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'"
-        + ", pourcentagePar='" + getPourcentagePar() + "'" + ", degAtt='" + getDegAtt() + "'" + ", pos='" + getPos()
-        + "'" + "}";
+    // return "Monstre: {" + " ptVie='" + getPtVie() + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'"
+    //     + ", pourcentagePar='" + getPourcentagePar() + "'" + ", degAtt='" + getDegAtt() + "'" + ", pos='" + getPos()
+    //     + "'" + "}";
+
+    return "Monstre en position: " + getPos();
   }
 
   public void affiche() {

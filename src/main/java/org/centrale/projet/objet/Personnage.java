@@ -1,5 +1,7 @@
 package org.centrale.projet.objet;
 
+import java.util.Random;
+
 /**
  *
  * @author Groupe 10
@@ -138,17 +140,27 @@ public class Personnage {
     this.pos = pos;
   }
 
-  public void deplace(Point2D pos) {
-    this.pos.setPosition(pos.getX(), pos.getY());
+  public void deplace() {
+    Random rInt = new Random();
+    int dx = 0;
+    int dy = 0;
+
+    while (dx == 0 && dy == 0) {
+      dx = rInt.nextInt(3) - 1;
+      dy = rInt.nextInt(3) - 1;
+    }
+    System.out.println("Déplacement de: Dx: " + dx + ", Dy: " + dy);
+    this.pos.translate(dx, dy);
   }
 
   @Override
   public String toString() {
-    return "Personnage: {" + " nom='" + getNom() + "'" + ", ptVie='" + getPtVie() + "'" + ", ptMana='" + getPtMana()
-        + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'" + ", pourcentagePar='" + getPourcentagePar() + "'"
-        + ", pourcentageMag='" + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag()
-        + "'" + ", degAtt='" + getDegAtt() + "'" + ", degMag='" + getDegMag() + "'" + ", distAttMax='" + getDistAttMax()
-        + "'" + ", pos='" + getPos() + "'" + "}";
+    // return "Personnage: {" + " nom='" + getNom() + "'" + ", ptVie='" + getPtVie() + "'" + ", ptMana='" + getPtMana()
+    //     + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'" + ", pourcentagePar='" + getPourcentagePar() + "'"
+    //     + ", pourcentageMag='" + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag()
+    //     + "'" + ", degAtt='" + getDegAtt() + "'" + ", degMag='" + getDegMag() + "'" + ", distAttMax='" + getDistAttMax()
+    //     + "'" + ", pos='" + getPos() + "'" + "}";
+    return "Personnage ("+getNom()+") en position: "+getPos();
   }
 
   public void affiche() {

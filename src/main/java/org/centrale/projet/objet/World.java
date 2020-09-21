@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * World Class
- * 
+ *
  * @author Groupe 10
  */
 public class World {

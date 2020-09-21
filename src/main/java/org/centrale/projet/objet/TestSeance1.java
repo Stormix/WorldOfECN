@@ -2,8 +2,8 @@ package org.centrale.projet.objet;
 
 /**
  * First test class
- * 
- * @author Groupe 1
+ *
+ * @author Groupe 10
  */
 public class TestSeance1 {
   public static void main(String[] args) {

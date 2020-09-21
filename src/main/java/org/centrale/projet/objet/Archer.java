@@ -27,11 +27,13 @@ public class Archer extends Personnage {
 
   @Override
   public String toString() {
-    return "Archer: {" + " nom='" + getNom() + "'" + ", ptVie='" + getPtVie() + "'" + ", ptMana='" + getPtMana() + "'"
-        + ", pourcentageAtt='" + getPourcentageAtt() + "'" + ", pourcentagePar='" + getPourcentagePar() + "'"
-        + ", pourcentageMag='" + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag()
-        + "'" + ", degAtt='" + getDegAtt() + "'" + ", degMag='" + getDegMag() + "'" + ", distAttMax='" + getDistAttMax()
-        + "'" + ", pos='" + getPos() + "'" + ", nbF='" + getNbFleches() + "'" + "}";
+    // return "Archer: {" + " nom='" + getNom() + "'" + ", ptVie='" + getPtVie() + "'" + ", ptMana='" + getPtMana() + "'"
+    //     + ", pourcentageAtt='" + getPourcentageAtt() + "'" + ", pourcentagePar='" + getPourcentagePar() + "'"
+    //     + ", pourcentageMag='" + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag()
+    //     + "'" + ", degAtt='" + getDegAtt() + "'" + ", degMag='" + getDegMag() + "'" + ", distAttMax='" + getDistAttMax()
+    //     + "'" + ", pos='" + getPos() + "'" + ", nbF='" + getNbFleches() + "'" + "}";
+
+    return "Archer (" + getNom() + ") en position: " + getPos();
   }
 
   public void affiche() {
