@@ -48,7 +48,7 @@ public class Monstre {
     this.pourcentageAtt = m.pourcentageAtt;
     this.pourcentagePar = m.pourcentagePar;
     this.degAtt = m.degAtt;
-    this.pos = m.pos;
+    this.pos = new Point2D(m.pos);
   }
 
   /**

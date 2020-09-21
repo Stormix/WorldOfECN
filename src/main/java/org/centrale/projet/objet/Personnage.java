@@ -79,7 +79,7 @@ public class Personnage {
     this.degAtt = perso.degAtt;
     this.degMag = perso.degMag;
     this.distAttMax = perso.distAttMax;
-    this.pos = perso.pos;
+    this.pos = new Point2D(perso.pos);
   }
 
   /**
