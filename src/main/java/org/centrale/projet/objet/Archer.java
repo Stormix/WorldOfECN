@@ -1,5 +1,7 @@
 package org.centrale.projet.objet;
 
+import java.util.Random;
+
 /**
  * Classe Archer
  *
@@ -20,14 +22,16 @@ public class Archer extends Personnage {
    * @param pP      pourcentage par ?
    * @param pM      pourcentage magie
    * @param rM      pourcentage resistance magie
-   * @param dA      degre d'attaque
-   * @param dM      degre magie
+   * @param dA      degats d'attaque
+   * @param dM      degats magie
    * @param distMax distance d'attaque maximal
    * @param pos     position du personnage dans le monde
    * @param nbF     nombre de flèches que posséde l'archer
+   * @param ptPar   points par?
    */
-  public Archer(String nom, int pV, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos, int nbF) {
-    super(nom, pV, 0, pA, pP, pM, rM, dA, dM, distMax, pos);
+  public Archer(String nom, int pV, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos, int nbF,
+      int ptPar) {
+    super(nom, pV, 0, pA, pP, pM, rM, dA, dM, distMax, pos, ptPar);
     this.nbF = nbF;
   }
 
@@ -61,18 +65,28 @@ public class Archer extends Personnage {
 
   @Override
   public String toString() {
-    return "Archer {" +
-      " nom='" + getNom() + "'" +
-      ", ptMana='" + getPtMana() + "'" +
-      ", pourcentageMag='" + getPourcentageMag() + "'" +
-      ", pourcentageResistMag='" + getPourcentageResistMag() + "'" +
-      ", degMag='" + getDegMag() + "'" +
-      ", distAttMax='" + getDistAttMax() + "'" +
-      " nbF='" + getNbF() + "'" +
-      "}";
+    return "Archer (" + getNom() + "): ptV ("+getPtVie()+")   %Att ("+ getPourcentageAtt() + ")   degAtt (" + getDegAtt()
+        + ")   nbF (" + getNbF() + ")  " + " distMax (" + getDistAttMax() + ")  " + "pos (" + getPos() + ")";
   }
 
   public void combattre(Creature c) {
-
+    Random rInt = new Random();
+    System.out.println("⚔️  "+ this.getNom() + " attaque " + c);
+    float distance = this.getPos().distance(c.getPos());
+    if (this.getNbF() == 0) {
+      System.out.println("Plus de flèches..");
+      return;
+    }
+    if (distance > 1 && distance <= this.getDistAttMax()) {
+      int rand = rInt.nextInt(100) + 1;
+      this.setNbF(this.getNbF() - 1);
+      if (rand <= this.getPourcentageAtt()) {
+        rand = rInt.nextInt(100) + 1;
+        int damage = this.getDegAtt();
+        c.setPtVie(c.getPtVie() - damage);
+      } else {
+        System.out.println("❌ " +this.getNom() + ": attaque ratée!");
+      }
+    }
   }
 }

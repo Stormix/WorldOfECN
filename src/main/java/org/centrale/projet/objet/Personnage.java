@@ -16,11 +16,10 @@ public class Personnage extends Creature {
   private int pourcentageMag;
   // pourcentage resistance magie
   private int pourcentageResistMag;
-  // degre magie
+  // degats magie
   private int degMag;
   // distance d'attaque maximal
   private int distAttMax;
-
   /**
    * Constructeur Personnage
    *
@@ -28,16 +27,17 @@ public class Personnage extends Creature {
    * @param ptV     points vie
    * @param ptM     points mana
    * @param pA      pourcentage attaque
-   * @param pP      pourcentage par ?
+   * @param pP      pourcentage par?
    * @param pM      pourcentage magie
    * @param rM      pourcentage resistance magie
-   * @param dA      degre d'attaque
-   * @param dM      degre magie
+   * @param dA      degats d'attaque
+   * @param dM      degats magie
    * @param distMax distance d'attaque maximal
    * @param pos     position du personnage dans le monde
+   * @param ptPar   points par?
    */
-  public Personnage(String nom, int ptV, int ptM, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos) {
-    super(ptV, pA, pP, dA, pos);
+  public Personnage(String nom, int ptV, int ptM, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos, int ptPar) {
+    super(ptV, pA, pP, dA, pos, ptPar);
 
     this.nom = nom;
     this.ptMana = ptM;
@@ -66,15 +66,6 @@ public class Personnage extends Creature {
    * Empty constructor
    */
   public Personnage() {
-  }
-
-  public Personnage(String nom, int ptMana, int pourcentageMag, int pourcentageResistMag, int degMag, int distAttMax) {
-    this.nom = nom;
-    this.ptMana = ptMana;
-    this.pourcentageMag = pourcentageMag;
-    this.pourcentageResistMag = pourcentageResistMag;
-    this.degMag = degMag;
-    this.distAttMax = distAttMax;
   }
 
   public String getNom() {
@@ -124,7 +115,6 @@ public class Personnage extends Creature {
   public void setDistAttMax(int distAttMax) {
     this.distAttMax = distAttMax;
   }
-
 
   @Override
   public String toString() {

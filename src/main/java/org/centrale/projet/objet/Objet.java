@@ -1,6 +1,6 @@
 package org.centrale.projet.objet;
 
-abstract class Objet {
+public class Objet {
   private Point2D pos;
   private int price;
 
@@ -38,5 +38,4 @@ abstract class Objet {
       "}";
   }
 
-  public abstract void utiliser(Creature c);
 }

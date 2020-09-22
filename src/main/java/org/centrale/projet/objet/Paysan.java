@@ -17,13 +17,14 @@ public class Paysan extends Personnage {
    * @param pP      pourcentage par ?
    * @param pM      pourcentage magie
    * @param rM      pourcentage resistance magie
-   * @param dA      degre d'attaque
-   * @param dM      degre magie
+   * @param dA      degats d'attaque
+   * @param dM      degats magie
    * @param distMax distance d'attaque maximal
    * @param p       position du personnage dans le monde
+   * @param ptPar   points par?
    */
-  public Paysan(String nom, int pV, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D p) {
-    super(nom, pV, 0, pA, pP, pM, rM, dA, dM, distMax, p);
+  public Paysan(String nom, int pV, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D p, int ptPar) {
+    super(nom, pV, 0, pA, pP, pM, rM, dA, dM, distMax, p, ptPar);
   }
 
   /**
@@ -45,7 +46,7 @@ public class Paysan extends Personnage {
   public String toString() {
     return "Paysan {" + " nom='" + getNom() + "'" + ", ptMana='" + getPtMana() + "'" + ", pourcentageMag='"
         + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag() + "'" + ", degMag='"
-        + getDegMag() + "'" + ", distAttMax='" + getDistAttMax() + "'" + "}";
+        + getDegMag() + "'" + ", distAttMax='" + getDistAttMax() + "'" + ", pos='" + getPos() + "'" + "}";
   }
 
 }

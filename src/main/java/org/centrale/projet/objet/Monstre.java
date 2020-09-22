@@ -8,7 +8,6 @@ package org.centrale.projet.objet;
  */
 
 public class Monstre extends Creature {
-  private int ptPar;
 
   /**
    * Constructeur Monstre
@@ -16,13 +15,12 @@ public class Monstre extends Creature {
    * @param ptV points vie
    * @param pA  pourcentage attaque
    * @param pP  pourcentage par ?
-   * @param dA  degre d'attaque
+   * @param dA  degats d'attaque
    * @param pos position du personnage dans le monde
    * @param ptPar point par?
    */
   public Monstre(int ptV, int pA, int pP, int dA, Point2D pos, int ptPar) {
-    super(ptV, pA, pP,  dA, pos);
-    this.ptPar = ptPar;
+    super(ptV, pA, pP,  dA, pos, ptPar);
   }
 
   /**
@@ -32,7 +30,6 @@ public class Monstre extends Creature {
    */
   public Monstre(Monstre m) {
     super(m);
-    this.ptPar = m.ptPar;
   }
 
   /**

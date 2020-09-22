@@ -36,28 +36,27 @@ public class World {
     Random rInt = new Random(); // Random integer generator
 
     // Get a random world position
-    int randomX = rInt.nextInt(this.worldSize);
-    int randomY = rInt.nextInt(this.worldSize);
+    int randomX = 0;//rInt.nextInt(this.worldSize);
+    int randomY = 0; //rInt.nextInt(this.worldSize);
 
 
     // set Robin
-    this.robin = new Archer("Robin", 120, 0, 0, 0, 0, 0, 0, 0, new Point2D(randomX, randomY), 10);
+    this.robin = new Archer("Robin", 120, 70, 0, 0, 0, 10, 0, 30, new Point2D(randomX, randomY), 25, 0);
 
     // Copy Robin to GuillomeT
     this.guillaumeT = new Archer(this.robin);
     // Update GuillaumeT's name
     this.guillaumeT.setNom("GuillomeT");
-    // Move robin
-    this.robin.deplace();
+    this.guillaumeT.setPos(new Point2D(randomX - 2, randomY - 1));
 
     // set Pion
-    this.peon = new Paysan("Peon", 100, 0, 0, 0, 0, 0, 0, 0, new Point2D(randomX + 1, randomY));
+    this.peon = new Paysan("Peon", 100, 0, 0, 0, 0, 0, 0, 0, new Point2D(randomX + 1, randomY), 0);
 
     // set GrosBill
-    this.grosBill = new Guerrier("GrosBill", 175, 0, 0, 0, 0, 0, 0, 0, new Point2D(randomX - 1, randomY));
+    this.grosBill = new Guerrier("GrosBill", 175, 80, 0, 0, 0, 20, 0, 1, new Point2D(randomX - 1, randomY), 0);
 
     // set Merlin
-    this.merlin = new Mage("Merlin", 100, 100, 0, 0, 0, 0, 0, 0, 0, new Point2D(randomX, randomY + 1));
+    this.merlin = new Mage("Merlin", 100, 100, 0, 0, 80, 0, 0, 15, 40, new Point2D(randomX, randomY + 1), 0);
 
     // set Bugs
     this.bugs1 = new Lapin(50, 0, 0, 0, new Point2D(randomX, randomY - 1),0);
@@ -66,10 +65,36 @@ public class World {
     this.bugs2 = new Lapin(50, 0, 0, 0, new Point2D(randomX + 1, randomY + 1), 0);
 
     // set Wolfie
-    this.wolfie = new Loup(125, 0, 0, 0, new Point2D(randomX - 2, randomY - 2), 0);
+    this.wolfie = new Loup(75, 50, 0, 30, new Point2D(randomX - 2, randomY - 2), 0);
   }
 
   public void tourDeJeu() {
+    Random rInt = new Random(); // Random integer generator
+    int rand;
+    int i = 1;
+    while (this.wolfie.getPtVie() > 0) {
+      System.out.println("-------------------- ⌛ Turn " + i + " ---------- ----------");
+      rand = rInt.nextInt(4)+1;
+      this.robin.combattre(this.wolfie);
+      this.guillaumeT.combattre(this.wolfie);
+      this.grosBill.combattre(this.wolfie);
+      this.merlin.combattre(this.wolfie);
+      switch (rand) {
+        case 1:
+          this.wolfie.combattre(this.robin);
+          break;
+        case 2:
+          this.wolfie.combattre(this.guillaumeT);
+          break;
+        case 3:
+          this.wolfie.combattre(this.grosBill);
+          break;
+        case 4:
+          this.wolfie.combattre(this.merlin);
+          break;
+      }
+      i++;
+    }
 
   }
 

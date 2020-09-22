@@ -1,5 +1,7 @@
 package org.centrale.projet.objet;
 
+import java.util.Random;
+
 /**
  * Classe Loup
  *
@@ -15,7 +17,7 @@ public class Loup extends Monstre {
    * @param pV    points vie
    * @param pA    pourcentage attaque
    * @param pP    pourcentage par ?
-   * @param dA    degre d'attaque
+   * @param dA    degats d'attaque
    * @param p     position du personnage dans le monde
    * @param ptPar point par?
    */
@@ -38,7 +40,31 @@ public class Loup extends Monstre {
   public Loup() {
   }
 
-  public void combattre(Creature c) {
+  @Override
+  public String toString() {
+    return "Loup: ptV (" + getPtVie() + ")   %Att (" + getPourcentageAtt() + ")   degAtt ("
+        + getDegAtt() + ")  " + "pos (" + getPos()
+        + ")";
+  }
 
+  public void combattre(Creature c) {
+    System.out.println(" 🐺  Loup attaque " + c);
+    float distance = this.getPos().distance(c.getPos());
+    if (distance == 1) {
+      Random rInt = new Random();
+      int rand = rInt.nextInt(100) + 1;
+      if (rand <= this.getPourcentageAtt()) {
+        rand = rInt.nextInt(100) + 1;
+        int damage;
+        if (rand > this.getPourcentagePar()) {
+          damage = this.getDegAtt();
+        } else {
+          damage = this.getDegAtt() - c.getPtPar();
+        }
+        c.setPtVie(c.getPtVie() - damage);
+      } else {
+        System.out.println("❌ Attaque du loup ratée!");
+      }
+    }
   }
 }

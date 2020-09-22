@@ -16,10 +16,11 @@ public class Creature {
   private int pourcentageAtt;
   // pourcentage par ?
   private int pourcentagePar;
-  // degre d'attaque
+  // degats d'attaque
   private int degAtt;
   // position du Creature dans le monde
   private Point2D pos;
+  private int ptPar;
 
   /**
    * Constructeur Creature
@@ -27,16 +28,17 @@ public class Creature {
    * @param ptV     points vie
    * @param pA      pourcentage attaque
    * @param pP      pourcentage par ?
-   * @param dA      degre d'attaque
+   * @param dA      degats d'attaque
    * @param distMax distance d'attaque maximal
    * @param pos     position du Creature dans le monde
    */
-  public Creature(int ptV, int pA, int pP, int dA, Point2D pos) {
+  public Creature(int ptV, int pA, int pP, int dA, Point2D pos, int ptPar) {
     this.ptVie = ptV;
     this.pourcentageAtt = pA;
     this.pourcentagePar = pP;
     this.degAtt = dA;
     this.pos = pos;
+    this.ptPar = ptPar;
   }
 
   /**
@@ -44,12 +46,13 @@ public class Creature {
    *
    * @param perso objet Creature
    */
-  public Creature(Creature perso) {
-    this.ptVie = perso.ptVie;
-    this.pourcentageAtt = perso.pourcentageAtt;
-    this.pourcentagePar = perso.pourcentagePar;
-    this.degAtt = perso.degAtt;
-    this.pos = new Point2D(perso.pos);
+  public Creature(Creature crea) {
+    this.ptVie = crea.ptVie;
+    this.pourcentageAtt = crea.pourcentageAtt;
+    this.pourcentagePar = crea.pourcentagePar;
+    this.degAtt = crea.degAtt;
+    this.ptPar = crea.ptPar;
+    this.pos = new Point2D(crea.pos);
   }
 
   /**
@@ -96,6 +99,14 @@ public class Creature {
 
   public void setPos(Point2D pos) {
     this.pos = pos;
+  }
+
+  public int getPtPar() {
+    return this.ptPar;
+  }
+
+  public void setPtPar(int ptPar) {
+    this.ptPar = ptPar;
   }
 
   /**
