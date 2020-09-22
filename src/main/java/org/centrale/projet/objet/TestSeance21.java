@@ -1,7 +1,7 @@
 package org.centrale.projet.objet;
 
 /**
- * Test Class for TP2 - Copie d'objet
+ * Test Class for TP3 - Copie d'objet
  *
  * @author Groupe 10
  * @version 0.1

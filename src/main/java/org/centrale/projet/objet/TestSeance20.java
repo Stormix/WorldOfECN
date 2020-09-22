@@ -1,7 +1,7 @@
 package org.centrale.projet.objet;
 
 /**
- * Test Class for TP3
+ * Test Class for TP3 - Déplacements
  *
  * @author Groupe 10
  * @version 0.1

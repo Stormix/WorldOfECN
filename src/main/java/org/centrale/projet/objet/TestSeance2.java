@@ -1,7 +1,7 @@
 package org.centrale.projet.objet;
 
 /**
- * Test Class for TP3
+ * Test Class for TP3 - Nouveautés
  *
  * @author Groupe 10
  * @version 0.1
@@ -36,12 +36,17 @@ public class TestSeance2 {
 
     System.out.println("----");
     game.getWolfie().affiche();
+
+    System.out.println("---- TEST Combat ----");
     game.tourDeJeu();
+
     System.out.println("---- TEST OBJET ----");
+
     game.getRobin().setPtVie(1);
     System.out.println("Oops Robin est à 1HP! ");
     game.getRobin().setPos(new Point2D(0,0));
     Soin potion = new Soin(10, 0, new Point2D(5, 0));
+
     while (game.getRobin().getPtVie() == 1) {
       game.getRobin().getPos().translate(1, 0);
       potion.utiliser(game.getRobin());

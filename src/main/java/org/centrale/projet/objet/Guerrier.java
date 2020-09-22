@@ -46,29 +46,30 @@ public class Guerrier extends Personnage {
 
   @Override
   public String toString() {
-    return "Guerrier (" + getNom() + "): ptV (" + getPtVie() + ")   %Att (" + getPourcentageAtt() + ")   degAtt ("
-        + getDegAtt() + ")  " + ", pos (" + getPos() + ")";
-
+    return getNom() + ": Guerrier(ptV: " + getPtVie() + ",%Att: " + getPourcentageAtt() + ",degAtt: " + getDegAtt()
+        + ",Pos: " + getPos()+")";
   }
 
   public void combattre(Creature c) {
-    System.out.println("⚔️  " +this.getNom() + " attaque " + c);
+    System.out.println("⚔️  " +this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (distance == 1) {
       Random rInt = new Random();
-      int rand = rInt.nextInt(100) + 1;
-      if (rand <= this.getPourcentageAtt()) {
-        rand = rInt.nextInt(100) + 1;
+      if (rInt.nextInt(100) + 1 <= this.getPourcentageAtt()) {
         int damage;
-        if (rand > this.getPourcentagePar()) {
+        if (rInt.nextInt(100) + 1 > this.getPourcentagePar()) {
           damage = this.getDegAtt();
+          System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
         }else{
           damage = this.getDegAtt() - c.getPtPar();
+          System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
         }
         c.setPtVie(c.getPtVie() - damage);
       } else {
-        System.out.println("❌ " + this.getNom() + ": attaque ratée!");
+        System.out.println(" -> ❌ " + this.getNom() + ": attaque ratée!");
       }
+    } else {
+      System.out.println(" -> ❌ Trop loin! Distance: " + distance);
     }
   }
 }

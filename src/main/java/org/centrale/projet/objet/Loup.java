@@ -42,13 +42,13 @@ public class Loup extends Monstre {
 
   @Override
   public String toString() {
-    return "Loup: ptV (" + getPtVie() + ")   %Att (" + getPourcentageAtt() + ")   degAtt ("
-        + getDegAtt() + ")  " + "pos (" + getPos()
+    return "Loup(ptV: " + getPtVie() + ",%Att: " + getPourcentageAtt() + ",degAtt: "
+        + getDegAtt() + ",pos: " + getPos()
         + ")";
   }
 
   public void combattre(Creature c) {
-    System.out.println(" 🐺  Loup attaque " + c);
+    System.out.println("🐺  Loup  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (distance == 1) {
       Random rInt = new Random();
@@ -62,9 +62,12 @@ public class Loup extends Monstre {
           damage = this.getDegAtt() - c.getPtPar();
         }
         c.setPtVie(c.getPtVie() - damage);
+        System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
       } else {
-        System.out.println("❌ Attaque du loup ratée!");
+        System.out.println(" -> ❌ Attaque du loup ratée!");
       }
+    } else {
+      System.out.println(" -> ❌ Trop loin! Distance: " + distance);
     }
   }
 }

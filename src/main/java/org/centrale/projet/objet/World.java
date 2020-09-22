@@ -36,9 +36,8 @@ public class World {
     Random rInt = new Random(); // Random integer generator
 
     // Get a random world position
-    int randomX = 0;//rInt.nextInt(this.worldSize);
-    int randomY = 0; //rInt.nextInt(this.worldSize);
-
+    int randomX = rInt.nextInt(this.worldSize);
+    int randomY = rInt.nextInt(this.worldSize);
 
     // set Robin
     this.robin = new Archer("Robin", 120, 70, 0, 0, 0, 10, 0, 30, new Point2D(randomX, randomY), 25, 0);
@@ -47,37 +46,44 @@ public class World {
     this.guillaumeT = new Archer(this.robin);
     // Update GuillaumeT's name
     this.guillaumeT.setNom("GuillomeT");
-    this.guillaumeT.setPos(new Point2D(randomX - 2, randomY - 1));
+    this.guillaumeT.setPos(new Point2D(randomX - 1, randomY));
 
     // set Pion
-    this.peon = new Paysan("Peon", 100, 0, 0, 0, 0, 0, 0, 0, new Point2D(randomX + 1, randomY), 0);
+    this.peon = new Paysan("Peon", 100, 0, 0, 0, 0, 0, 0, 0, new Point2D(randomX - 4, randomY), 0);
 
     // set GrosBill
-    this.grosBill = new Guerrier("GrosBill", 175, 80, 0, 0, 0, 20, 0, 1, new Point2D(randomX - 1, randomY), 0);
+    this.grosBill = new Guerrier("GrosBill", 175, 80, 0, 0, 0, 20, 0, 1, new Point2D(randomX, randomY + 2), 0);
 
     // set Merlin
-    this.merlin = new Mage("Merlin", 100, 100, 0, 0, 80, 0, 0, 15, 40, new Point2D(randomX, randomY + 1), 0);
+    this.merlin = new Mage("Merlin", 100, 100, 0, 0, 80, 0, 0, 15, 40, new Point2D(randomX + 1, randomY + 1), 0);
 
     // set Bugs
-    this.bugs1 = new Lapin(50, 0, 0, 0, new Point2D(randomX, randomY - 1),0);
+    this.bugs1 = new Lapin(50, 0, 0, 0, new Point2D(randomX - 3, randomY - 1), 0);
 
     // set Bunny
-    this.bugs2 = new Lapin(50, 0, 0, 0, new Point2D(randomX + 1, randomY + 1), 0);
+    this.bugs2 = new Lapin(50, 0, 0, 0, new Point2D(randomX - 3, randomY + 1), 0);
 
     // set Wolfie
-    this.wolfie = new Loup(75, 50, 0, 30, new Point2D(randomX - 2, randomY - 2), 0);
+    this.wolfie = new Loup(75, 50, 0, 30, new Point2D(randomX, randomY + 1), 0);
   }
 
+  // Pour l'instant, le tour de jeu ne comporte qu'un simulation de combat
   public void tourDeJeu() {
     Random rInt = new Random(); // Random integer generator
     int rand;
     int i = 1;
     while (this.wolfie.getPtVie() > 0) {
       System.out.println("-------------------- ⌛ Turn " + i + " ---------- ----------");
-      rand = rInt.nextInt(4)+1;
+      rand = rInt.nextInt(4) + 1;
       this.robin.combattre(this.wolfie);
+      if (this.wolfie.getPtVie() <= 0)
+        break;
       this.guillaumeT.combattre(this.wolfie);
+      if (this.wolfie.getPtVie() <= 0)
+        break;
       this.grosBill.combattre(this.wolfie);
+      if (this.wolfie.getPtVie() <= 0)
+        break;
       this.merlin.combattre(this.wolfie);
       switch (rand) {
         case 1:
@@ -95,6 +101,8 @@ public class World {
       }
       i++;
     }
+    System.out.println("⚰️  RIP Wolfie. Le combat est terminé.");
+
 
   }
 

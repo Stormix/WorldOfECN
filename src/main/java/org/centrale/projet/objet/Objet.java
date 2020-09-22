@@ -4,6 +4,12 @@ public class Objet {
   private Point2D pos;
   private int price;
 
+/**
+ * Constructeur Objet
+ *
+ * @param pos Position de l'objet dans le monde
+ * @param price Prix de l'objet, si par exemple on considère qu'on peut acheter les objets
+ */
   public Objet(Point2D pos, int price) {
     this.pos = pos;
     this.price = price;

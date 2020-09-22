@@ -65,28 +65,29 @@ public class Archer extends Personnage {
 
   @Override
   public String toString() {
-    return "Archer (" + getNom() + "): ptV ("+getPtVie()+")   %Att ("+ getPourcentageAtt() + ")   degAtt (" + getDegAtt()
-        + ")   nbF (" + getNbF() + ")  " + " distMax (" + getDistAttMax() + ")  " + "pos (" + getPos() + ")";
+    return getNom() + ": Archer(ptV: "+getPtVie()+",%Att: "+ getPourcentageAtt() + ",degAtt: " + getDegAtt()
+        + ",Pos: " + getPos() + ",nbF: " + getNbF() + "🏹" + ")";
   }
 
   public void combattre(Creature c) {
     Random rInt = new Random();
-    System.out.println("⚔️  "+ this.getNom() + " attaque " + c);
+    System.out.println("⚔️  "+ this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (this.getNbF() == 0) {
-      System.out.println("Plus de flèches..");
+      System.out.println(" -> ❌ Plus de flèches..");
       return;
     }
     if (distance > 1 && distance <= this.getDistAttMax()) {
-      int rand = rInt.nextInt(100) + 1;
       this.setNbF(this.getNbF() - 1);
-      if (rand <= this.getPourcentageAtt()) {
-        rand = rInt.nextInt(100) + 1;
+      if (rInt.nextInt(100) + 1 <= this.getPourcentageAtt()) {
         int damage = this.getDegAtt();
         c.setPtVie(c.getPtVie() - damage);
+        System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
       } else {
-        System.out.println("❌ " +this.getNom() + ": attaque ratée!");
+        System.out.println(" -> ❌ " +this.getNom() + ": attaque ratée!");
       }
+    } else {
+      System.out.println(" -> ❌ Trop proche/loin! Distance: "+ distance);
     }
   }
 }

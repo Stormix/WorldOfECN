@@ -47,31 +47,30 @@ public class Mage extends Personnage {
 
   @Override
   public String toString() {
-    return "Mage (" + getNom() + "): ptV (" + getPtVie()
-        + ")   ptMana (" + getPtMana()
-        + ")   %Mag (" + getPourcentageMag() + ")   degAtt ("
-        + getDegAtt() + ")   distMax (" + getDistAttMax() + ")  " + "pos (" + getPos()
-        + ")";
+    return getNom() + ": Mage(ptV: " + getPtVie() + ",PtMana: " + getPtMana()
+        + ",%Mag: " + getPourcentageMag() + ",degAtt: " + getDegAtt()
+        + ",Pos: " + getPos() + ")";
   }
 
   public void combattre(Creature c) {
-    System.out.println("⚔️  " +this.getNom() + " attaque " + c);
+    System.out.println("⚔️  " +this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (this.getPtMana() == 0) {
-      System.out.println("Plus de Mana..");
+      System.out.println(" -> ❌ Plus de Mana..");
       return;
     }
     if (distance >= 1 && distance < this.getDistAttMax()) {
       Random rInt = new Random();
-      int rand = rInt.nextInt(100) + 1;
       this.setPtMana(this.getPtMana() - 1);
-      if (rand <= this.getPourcentageMag()) {
-        rand = rInt.nextInt(100) + 1;
+      if (rInt.nextInt(100) + 1 <= this.getPourcentageAtt()) {
         int damage = this.getDegMag();
         c.setPtVie(c.getPtVie() - damage);
+        System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
       } else {
-        System.out.println("❌ " + this.getNom() + ": attaque ratée!");
+        System.out.println(" -> ❌ " + this.getNom() + ": attaque ratée!");
       }
+    } else {
+      System.out.println(" -> ❌ Trop loin! Distance: " + distance);
     }
   }
 }
