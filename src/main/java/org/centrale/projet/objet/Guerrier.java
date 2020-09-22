@@ -22,7 +22,6 @@ public class Guerrier extends Personnage {
    * @param dM      degats magie
    * @param distMax distance d'attaque maximal
    * @param pos     position du personnage dans le monde
-   * @param nbF     nombre de flèches que posséde l'Guerrier
    * @param ptPar   points par?
    */
   public Guerrier(String nom, int pV, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos, int ptPar) {

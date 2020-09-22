@@ -1,8 +1,20 @@
 package org.centrale.projet.objet;
 
+/**
+ * Classe Mana
+ *
+ * @author Groupe 10
+ * @version 0.1
+ */
 public class Mana extends Potion {
   private int value;
 
+/**
+ *
+ * @param price prix de la potion
+ * @param pos   position de la potion dans le monde
+ * @param v     Le nombre de PMana que la potion rajoute
+ */
   public Mana(int v, int price, Point2D pos) {
     super(price, pos);
     this.value = v;

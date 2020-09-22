@@ -25,12 +25,12 @@ public class Creature {
   /**
    * Constructeur Creature
    *
-   * @param ptV     points vie
-   * @param pA      pourcentage attaque
-   * @param pP      pourcentage par ?
-   * @param dA      degats d'attaque
-   * @param distMax distance d'attaque maximal
-   * @param pos     position du Creature dans le monde
+   * @param ptV   points vie
+   * @param pA    pourcentage attaque
+   * @param pP    pourcentage par ?
+   * @param dA    degats d'attaque
+   * @param pos   position du Creature dans le monde
+   * @param ptPar points par?
    */
   public Creature(int ptV, int pA, int pP, int dA, Point2D pos, int ptPar) {
     this.ptVie = ptV;
@@ -44,7 +44,7 @@ public class Creature {
   /**
    * Constructeur du Creature à partir d'un objet Creature
    *
-   * @param perso objet Creature
+   * @param crea objet Creature
    */
   public Creature(Creature crea) {
     this.ptVie = crea.ptVie;

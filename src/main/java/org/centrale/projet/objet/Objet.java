@@ -1,5 +1,12 @@
 package org.centrale.projet.objet;
 
+
+/**
+ * Classe Objet
+ *
+ * @author Groupe 10
+ * @version 0.1
+ */
 public class Objet {
   private Point2D pos;
   private int price;

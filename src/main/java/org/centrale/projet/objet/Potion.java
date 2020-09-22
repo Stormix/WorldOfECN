@@ -1,5 +1,11 @@
 package org.centrale.projet.objet;
 
+/**
+ * Classe Potion
+ *
+ * @author Groupe 10
+ * @version 0.1
+ */
 public class Potion extends Objet {
   private boolean used;
 

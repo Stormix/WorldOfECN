@@ -23,7 +23,6 @@ public class Mage extends Personnage {
    * @param dM      degats magie
    * @param distMax distance d'attaque maximal
    * @param pos     position du personnage dans le monde
-   * @param nbF     nombre de flèches que posséde l'Mage
    * @param ptPar   points par?
    */
   public Mage(String nom, int pV, int ptMana, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos, int ptPar) {

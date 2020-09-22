@@ -1,5 +1,11 @@
 package org.centrale.projet.objet;
 
+/**
+ * Classe Soin
+ *
+ * @author Groupe 10
+ * @version 0.1
+ */
 public class Soin extends Potion {
   private int value;
 
