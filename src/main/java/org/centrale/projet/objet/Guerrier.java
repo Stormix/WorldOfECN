@@ -49,6 +49,11 @@ public class Guerrier extends Personnage {
         + ",Pos: " + getPos()+")";
   }
 
+  /**
+   * Combat contact
+   *
+   * @param c Creature
+   */
   public void combattre(Creature c) {
     System.out.println("⚔️  " +this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());

@@ -65,10 +65,15 @@ public class Archer extends Personnage {
 
   @Override
   public String toString() {
-    return getNom() + ": Archer(ptV: "+getPtVie()+",%Att: "+ getPourcentageAtt() + ",degAtt: " + getDegAtt()
+    return getNom() + ": Archer(ptV: " + getPtVie() + ",%Att: " + getPourcentageAtt() + ",degAtt: " + getDegAtt()
         + ",Pos: " + getPos() + ",nbF: " + getNbF() + "🏹" + ")";
   }
 
+  /**
+   * Combat à distance
+   *
+   * @param c Creature
+   */
   public void combattre(Creature c) {
     Random rInt = new Random();
     System.out.println("⚔️  "+ this.getNom() + "  essaie d'attaquer " + c);
