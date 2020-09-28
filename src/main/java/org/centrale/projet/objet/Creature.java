@@ -1,6 +1,5 @@
 package org.centrale.projet.objet;
 
-import java.util.Random;
 
 /**
  * Classe Creature
@@ -112,18 +111,18 @@ public class Creature {
   /**
    * Move the entity to one of its empty neighbour positions
    */
-  public void deplace(World gameWorld) {
-    int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
-    int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
+  // public void deplace(World gameWorld) {
+  //   int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+  //   int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
-    for (int i = 0; i < dy.length; i++) {
-      Point2D newPos = new Point2D(this.pos.getX() + dx[i] , this.pos.getY() + dy[i] );
-      if (!gameWorld.getWorldMap().containsKey(newPos) && newPos.getX() > 0 && newPos.getY() > 0) {
-        this.pos.translate(dx[i] , dy[i] );
-        return;
-      }
-    }
-  }
+  //   for (int i = 0; i < dy.length; i++) {
+  //     Point2D newPos = new Point2D(this.pos.getX() + dx[i] , this.pos.getY() + dy[i] );
+  //     if (!gameWorld.getWorldMap().containsKey(newPos) && newPos.getX() > 0 && newPos.getY() > 0) {
+  //       this.pos.translate(dx[i] , dy[i] );
+  //       return;
+  //     }
+  //   }
+  // }
 
   @Override
   public String toString() {
