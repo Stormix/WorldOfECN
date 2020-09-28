@@ -110,33 +110,27 @@ public class Creature {
   }
 
   /**
-   * Move the entity to one of its neighbour positions
+   * Move the entity to one of its empty neighbour positions
    */
-  public void deplace() {
-    Random rInt = new Random();
-    int dx = 0;
-    int dy = 0;
+  public void deplace(World gameWorld) {
+    int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+    int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
-    while (dx == 0 && dy == 0) {
-      dx = rInt.nextInt(3) - 1;
-      dy = rInt.nextInt(3) - 1;
+    for (int i = 0; i < dy.length; i++) {
+      Point2D newPos = new Point2D(this.pos.getX() + dx[i] , this.pos.getY() + dy[i] );
+      if (!gameWorld.getWorldMap().containsKey(newPos) && newPos.getX() > 0 && newPos.getY() > 0) {
+        this.pos.translate(dx[i] , dy[i] );
+        return;
+      }
     }
-    System.out.println("Déplacement de: Dx: " + dx + ", Dy: " + dy);
-    this.pos.translate(dx, dy);
   }
-
 
   @Override
   public String toString() {
-    return "Creature {" +
-      " ptVie='" + getPtVie() + "'" +
-      ", pourcentageAtt='" + getPourcentageAtt() + "'" +
-      ", pourcentagePar='" + getPourcentagePar() + "'" +
-      ", degAtt='" + getDegAtt() + "'" +
-      ", pos='" + getPos() + "'" +
-      "}";
+    return "Creature {" + " ptVie='" + getPtVie() + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'"
+        + ", pourcentagePar='" + getPourcentagePar() + "'" + ", degAtt='" + getDegAtt() + "'" + ", pos='" + getPos()
+        + "'" + "}";
   }
-
 
   public void affiche() {
     System.out.println(this);

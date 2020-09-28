@@ -31,10 +31,4 @@ public class Lapin extends Monstre {
   public Lapin(Lapin l) {
     super(l);
   }
-
-  /**
-   * Empty constructor
-   */
-  public Lapin() {
-  }
 }

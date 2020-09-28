@@ -1,5 +1,7 @@
 package org.centrale.projet.objet;
 
+import java.util.Random;
+
 /**
  * Classe Point2D
  *
@@ -32,6 +34,12 @@ public class Point2D {
   public Point2D(Point2D p) {
     this.x = p.x;
     this.y = p.y;
+  }
+
+  public Point2D(int bound) {
+    Random rInt = new Random();
+    this.x = rInt.nextInt(bound);
+    this.y = rInt.nextInt(bound);
   }
 
   /**
@@ -78,6 +86,22 @@ public class Point2D {
   }
 
   public float distance(Point2D p) {
-    return (float) Math.sqrt((p.getX() - this.x ) * (p.getX() - this.x) + (p.getY() - this.y) * (p.getY() - this.y));
+    return (float) Math.sqrt((p.getX() - this.x) * (p.getX() - this.x) + (p.getY() - this.y) * (p.getY() - this.y));
+  }
+
+  @Override
+  public int hashCode() {
+    // http://developer.classpath.org/doc/java/awt/geom/Point2D-source.html
+    long l = java.lang.Double.doubleToLongBits(this.y);
+    l = l * 31 ^ java.lang.Double.doubleToLongBits(this.x);
+    return (int) ((l >> 32) ^ l);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!(o instanceof Point2D))
+      return false;
+    Point2D p = (Point2D) o;
+    return this.x == p.getX() && this.y == p.getY();
   }
 }

@@ -10,19 +10,19 @@ public class TestSeance1 {
   public static void main(String[] args) {
 
     // Initialize a new game world
-    World game = new World();
+    // World game = new World();
 
-    // Display the different characters with a small separator
-    System.out.println("---- \n");
-    game.getRobin().affiche();
+    // // Display the different characters with a small separator
+    // System.out.println("---- \n");
+    // game.getRobin().affiche();
 
-    System.out.println("---- \n");
-    game.getPeon().affiche();
+    // System.out.println("---- \n");
+    // game.getPeon().affiche();
 
-    System.out.println("---- \n");
-    game.getBugs1().affiche();
+    // System.out.println("---- \n");
+    // game.getBugs1().affiche();
 
-    System.out.println("---- \n");
-    game.getBugs2().affiche();
+    // System.out.println("---- \n");
+    // game.getBugs2().affiche();
   }
 }
