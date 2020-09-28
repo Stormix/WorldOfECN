@@ -15,26 +15,26 @@ public class World {
 
   // World size (assuming the world map is square)
   private final int worldSize;
-  private LinkedList<Creature> worldMap; // Creature Layer
+  private ArrayList<Creature> worldMap; // Creature Layer
   private HashMap<Point2D, Objet> worldObjectsMap; // Object Layer (e.g: Potions)
 
   public World(int worldSize) {
     this.worldSize = worldSize;
-    this.worldMap = new LinkedList<>();
+    this.worldMap = new ArrayList<>();
     this.worldObjectsMap = new HashMap<>();
     this.creeMondeAlea(100);
   }
 
   public World(int worldSize, int population) {
     this.worldSize = worldSize;
-    this.worldMap = new LinkedList<>();
+    this.worldMap = new ArrayList<>();
     this.worldObjectsMap = new HashMap<>();
     this.creeMondeAlea(population);
   }
 
   public World() {
     this.worldSize = 100;
-    this.worldMap = new LinkedList<>();
+    this.worldMap = new ArrayList<>();
     this.worldObjectsMap = new HashMap<>();
     this.creeMondeAlea(100);
   }
@@ -51,8 +51,9 @@ public class World {
     for (int i = 0; i < population; i++) {
       Point2D randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
       int index = this.worldSize * randPos.getX() + randPos.getY();
-      while ( this.worldMap.get(index) != null){
+      while (this.worldMap.get(index) != null){
         randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+        index = this.worldSize * randPos.getX() + randPos.getY();
       }
       Archer agent = new Archer("Archer #" + i, 0, 0, 0, 0, 0, 0, 0, 0, randPos, 0, 0);
       this.worldMap.set(index, agent);
@@ -69,11 +70,11 @@ public class World {
     return this.worldSize;
   }
 
-  public LinkedList<Creature> getWorldMap() {
+  public ArrayList<Creature> getWorldMap() {
     return this.worldMap;
   }
 
-  public void setWorldMap(LinkedList<Creature> worldMap) {
+  public void setWorldMap(ArrayList<Creature> worldMap) {
     this.worldMap = worldMap;
   }
 

@@ -8,19 +8,19 @@ public class TestSeance3 {
     for (int run : runs) {
       // Initialize a new game world
       World game = new World(run, run);
-      System.out.println("HashMap has " + run + " objects.");
+      System.out.println("ArrayList has " + game.getWorldMap().size() + " objects.");
 
       // Calcule barrycentre protagonistes
       for (int i = 0; i < 5; i++) {
         long startT = System.nanoTime();
         int sumX = 0;
         int sumY = 0;
-        for (Creature agent: game.getWorldMap()) {
-          if (agent == null) {
+        for (int j = 0; j < game.getWorldMap().size(); j++) {
+          if (game.getWorldMap().get(j) == null) {
             continue;
           }
-          sumX += agent.getPos().getX();
-          sumY += agent.getPos().getY();
+          sumX += game.getWorldMap().get(j).getPos().getX();
+          sumY += game.getWorldMap().get(j).getPos().getY();
         }
         long endT = System.nanoTime();
         System.out.println((endT - startT));
