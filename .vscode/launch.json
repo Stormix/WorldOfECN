@@ -1,0 +1,98 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug (Launch) - Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestPoint2D<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestPoint2D",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance1<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance1",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance2<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance2",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance20<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance20",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance21<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance21",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance3<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance3",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance3ArrayListForI<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance3ArrayListForI",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance3ArrayListForIter<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance3ArrayListForIter",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance3HashMapForI<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance3HashMapForI",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance3HashMapForIter<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance3HashMapForIter",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance3LinkedListForI<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance3LinkedListForI",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TestSeance3LinkedListForIter<ProjetTP>",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance3LinkedListForIter",
+      "projectName": "ProjetTP"
+    }
+  ]
+}
