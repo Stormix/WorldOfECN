@@ -13,5 +13,6 @@ public class TestSeance3 {
     int worldSize = (int) (Math.sqrt(populationSize) * 10); // Calculate a "big-enough" world
     System.out.println("World size: " + worldSize + ". Population: " + populationSize);
     World game = new World(worldSize, populationSize);
+    game.afficheWorld();
   }
 }
