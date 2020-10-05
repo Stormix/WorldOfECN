@@ -8,7 +8,7 @@ import java.util.Random;
  * @version 0.1
  */
 
-public class Mage extends Personnage {
+public class Mage extends Personnage implements Combattant {
   /**
    * Constructeur Mage
    *
@@ -57,7 +57,7 @@ public class Mage extends Personnage {
    * @param c Creature
    */
   public void combattre(Creature c) {
-    System.out.println("⚔️  " +this.getNom() + "  essaie d'attaquer " + c);
+    System.out.println("⚔️  " + this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (this.getPtMana() == 0) {
       System.out.println(" -> ❌ Plus de Mana..");
@@ -75,6 +75,19 @@ public class Mage extends Personnage {
       }
     } else {
       System.out.println(" -> ❌ Trop loin! Distance: " + distance);
+    }
+  }
+
+  public Boolean deplacer(World gameWorld, Point2D newPosition) {
+    if (!gameWorld.getWorldMap().containsKey(newPosition)) {
+      gameWorld.getWorldMap().put(newPosition, this);
+      gameWorld.getWorldMap().remove(this.getPos());
+      this.getPos().setPosition(newPosition.getX(), newPosition.getY());
+      this.checkForPickups(gameWorld, newPosition);
+      return true;
+    } else {
+      System.out.println("Position déjà occupée.");
+      return false;
     }
   }
 }

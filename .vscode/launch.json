@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - TestSeance4",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.TestSeance4",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
       "name": "Debug (Launch) - Current File",
       "request": "launch",
       "mainClass": "${file}"

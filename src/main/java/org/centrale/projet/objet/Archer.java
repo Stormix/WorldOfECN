@@ -9,7 +9,7 @@ import java.util.Random;
  * @version 0.1
  */
 
-public class Archer extends Personnage {
+public class Archer extends Personnage implements Combattant{
   // Nombre de flèches que posséde l'archer
   private int nbF;
 
@@ -76,7 +76,7 @@ public class Archer extends Personnage {
    */
   public void combattre(Creature c) {
     Random rInt = new Random();
-    System.out.println("⚔️  "+ this.getNom() + "  essaie d'attaquer " + c);
+    System.out.println("⚔️  " + this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (this.getNbF() == 0) {
       System.out.println(" -> ❌ Plus de flèches..");
@@ -89,10 +89,22 @@ public class Archer extends Personnage {
         c.setPtVie(c.getPtVie() - damage);
         System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
       } else {
-        System.out.println(" -> ❌ " +this.getNom() + ": attaque ratée!");
+        System.out.println(" -> ❌ " + this.getNom() + ": attaque ratée!");
       }
     } else {
-      System.out.println(" -> ❌ Trop proche/loin! Distance: "+ distance);
+      System.out.println(" -> ❌ Trop proche/loin! Distance: " + distance);
+    }
+  }
+  public Boolean deplacer(World gameWorld, Point2D newPosition) {
+    if (!gameWorld.getWorldMap().containsKey(newPosition)) {
+      gameWorld.getWorldMap().put(newPosition, this);
+      gameWorld.getWorldMap().remove(this.getPos());
+      this.getPos().setPosition(newPosition.getX(), newPosition.getY());
+      this.checkForPickups(gameWorld, newPosition);
+      return true;
+    } else {
+      System.out.println("Position déjà occupée.");
+      return false;
     }
   }
 }

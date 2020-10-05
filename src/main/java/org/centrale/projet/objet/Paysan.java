@@ -49,4 +49,17 @@ public class Paysan extends Personnage {
         + getDegMag() + "'" + ", distAttMax='" + getDistAttMax() + "'" + ", pos='" + getPos() + "'" + "}";
   }
 
+
+  public Boolean deplacer(World gameWorld, Point2D newPosition) {
+    if (!gameWorld.getWorldMap().containsKey(newPosition)) {
+      gameWorld.getWorldMap().put(newPosition, this);
+      gameWorld.getWorldMap().remove(this.getPos());
+      this.getPos().setPosition(newPosition.getX(), newPosition.getY());
+      this.checkForPickups(gameWorld, newPosition);
+      return true;
+    } else {
+      System.out.println("Position déjà occupée." + gameWorld.getWorldMap().get(newPosition));
+      return false;
+    }
+  }
 }

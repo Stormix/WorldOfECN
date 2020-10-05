@@ -9,7 +9,7 @@ import java.util.Random;
  * @version 0.1
  */
 
-public class Loup extends Monstre {
+public class Loup extends Monstre implements Combattant{
 
   /**
    * Constructeur Loup
@@ -42,9 +42,25 @@ public class Loup extends Monstre {
 
   @Override
   public String toString() {
-    return "Loup(ptV: " + getPtVie() + ",%Att: " + getPourcentageAtt() + ",degAtt: "
-        + getDegAtt() + ",pos: " + getPos()
+    return "Loup(ptV: " + getPtVie() + ",%Att: " + getPourcentageAtt() + ",degAtt: " + getDegAtt() + ",pos: " + getPos()
         + ")";
+  }
+
+  /**
+   * Deplacer l'entité
+   * @param gameWorld World
+   * @param newPosition Nouvelle position
+   *
+   * @return True si la deplacement est possible
+   */
+  public Boolean deplacer(World gameWorld, Point2D newPosition) {
+    if (!gameWorld.getWorldMap().containsKey(newPosition)) {
+      this.getPos().setPosition(newPosition.getX(), newPosition.getY());
+      return true;
+    } else {
+      System.out.println("Position déjà occupée.");
+      return false;
+    }
   }
 
   /**

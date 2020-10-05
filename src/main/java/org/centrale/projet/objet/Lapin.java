@@ -31,4 +31,14 @@ public class Lapin extends Monstre {
   public Lapin(Lapin l) {
     super(l);
   }
+
+  public Boolean deplacer(World gameWorld, Point2D newPosition) {
+    if (!gameWorld.getWorldMap().containsKey(newPosition)) {
+      this.getPos().setPosition(newPosition.getX(), newPosition.getY());
+      return true;
+    } else {
+      System.out.println("Position déjà occupée.");
+      return false;
+    }
+  }
 }

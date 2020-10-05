@@ -1,6 +1,5 @@
 package org.centrale.projet.objet;
 
-
 /**
  * Classe Creature
  *
@@ -8,7 +7,7 @@ package org.centrale.projet.objet;
  * @version 0.1
  */
 
-public class Creature {
+public abstract class Creature implements Deplacable {
   // points vie
   private int ptVie;
   // pourcentage attaque
@@ -108,22 +107,6 @@ public class Creature {
     this.ptPar = ptPar;
   }
 
-  /**
-   * Move the entity to one of its empty neighbour positions
-   */
-  // public void deplace(World gameWorld) {
-  //   int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
-  //   int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
-
-  //   for (int i = 0; i < dy.length; i++) {
-  //     Point2D newPos = new Point2D(this.pos.getX() + dx[i] , this.pos.getY() + dy[i] );
-  //     if (!gameWorld.getWorldMap().containsKey(newPos) && newPos.getX() > 0 && newPos.getY() > 0) {
-  //       this.pos.translate(dx[i] , dy[i] );
-  //       return;
-  //     }
-  //   }
-  // }
-
   @Override
   public String toString() {
     return "Creature {" + " ptVie='" + getPtVie() + "'" + ", pourcentageAtt='" + getPourcentageAtt() + "'"
@@ -135,4 +118,8 @@ public class Creature {
     System.out.println(this);
   }
 
+  /**
+   * Move the entity to one of its empty neighbour positions
+   */
+  public abstract Boolean deplacer(World gameWorld, Point2D newPos);
 }

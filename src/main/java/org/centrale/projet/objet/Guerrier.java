@@ -8,7 +8,7 @@ import java.util.Random;
  * @version 0.1
  */
 
-public class Guerrier extends Personnage {
+public class Guerrier extends Personnage implements Combattant{
   /**
    * Constructeur Guerrier
    *
@@ -55,7 +55,7 @@ public class Guerrier extends Personnage {
    * @param c Creature
    */
   public void combattre(Creature c) {
-    System.out.println("⚔️  " +this.getNom() + "  essaie d'attaquer " + c);
+    System.out.println("⚔️  " + this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (distance == 1) {
       Random rInt = new Random();
@@ -64,7 +64,7 @@ public class Guerrier extends Personnage {
         if (rInt.nextInt(100) + 1 > this.getPourcentagePar()) {
           damage = this.getDegAtt();
           System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
-        }else{
+        } else {
           damage = this.getDegAtt() - c.getPtPar();
           System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
         }
@@ -74,6 +74,20 @@ public class Guerrier extends Personnage {
       }
     } else {
       System.out.println(" -> ❌ Trop loin! Distance: " + distance);
+    }
+  }
+
+
+  public Boolean deplacer(World gameWorld, Point2D newPosition) {
+    if (!gameWorld.getWorldMap().containsKey(newPosition)) {
+      gameWorld.getWorldMap().put(newPosition, this);
+      gameWorld.getWorldMap().remove(this.getPos());
+      this.getPos().setPosition(newPosition.getX(), newPosition.getY());
+      this.checkForPickups(gameWorld, newPosition);
+      return true;
+    } else {
+      System.out.println("Position déjà occupée.");
+      return false;
     }
   }
 }

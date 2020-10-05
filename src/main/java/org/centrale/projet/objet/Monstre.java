@@ -7,7 +7,7 @@ package org.centrale.projet.objet;
  * @version 0.1
  */
 
-public class Monstre extends Creature {
+public abstract class Monstre extends Creature {
 
   /**
    * Constructeur Monstre

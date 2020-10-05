@@ -7,7 +7,7 @@ package org.centrale.projet.objet;
  * @version 0.1
  */
 
-public class Personnage extends Creature {
+public abstract class Personnage extends Creature {
   // Nom du personnage
   private String nom;
   // points mana
@@ -114,6 +114,21 @@ public class Personnage extends Creature {
 
   public void setDistAttMax(int distAttMax) {
     this.distAttMax = distAttMax;
+  }
+
+  public void checkForPickups(World gameWorld, Point2D position){
+    if (gameWorld.getWorldObjectsMap().containsKey(position)) {
+      Potion item = (Potion) gameWorld.getWorldObjectsMap().get(position);
+      String type = ((Object) item).getClass().getName();
+      System.out.println("Potion de type: " + type + " trouvé!");
+      if (type == "org.centrale.projet.objet.Soin") {
+        ((Soin) item).utiliser(this);
+        gameWorld.getWorldObjectsMap().remove(position);
+      } else if(type == "org.centrale.projet.objet.Mana") {
+        ((Mana) item).utiliser(this);
+        gameWorld.getWorldObjectsMap().remove(position);
+      }
+    }
   }
 
   @Override
