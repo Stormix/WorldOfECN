@@ -1,5 +1,11 @@
 package org.centrale.projet.objet;
 
+/**
+ * Classe NuageToxique
+ * 
+ * @author Groupe 10
+ * @version 0.1
+ */
 public class NuageToxique extends Objet implements Deplacable, Combattant {
     private int rayon;
     private int degat;

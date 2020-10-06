@@ -1,5 +1,11 @@
 package org.centrale.projet.objet;
 
+/**
+ * Classe MagicMushroom
+ * 
+ * @author Groupe 10
+ * @version 0.1
+ */
 public class MagicMushroom extends Nourriture{
     /**
      * Constructeur MagicMushroom

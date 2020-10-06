@@ -1,6 +1,10 @@
 package org.centrale.projet.objet;
 
-
+/**
+ * TestSeance4 - Simulation
+ * @author Groupe 10
+ * @version 0.1
+ */
 public class TestSeance4 {
   public static void main(String[] args) {
     // Initialize a new game world
