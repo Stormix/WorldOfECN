@@ -160,7 +160,7 @@ public class World {
    * Génère plusieurs potions aléatoirement espacées d'une distance supérieure à 3
    * unités
    *
-   * @param populationSize Nbre de creature.
+   * @param itemCount Nbre de creature.
    */
   public void randomItems(int itemCount) {
     Random rndInt = new Random();
@@ -222,6 +222,7 @@ public class World {
         }
         continue;
       }
+      joueur.getPerso().checkNourritures();
       System.out.println("Que voulez-vous faire " + joueur.getPerso().getNom() + " ? D: se déplacer | A: attaquer");
       String choice = input.next();
       System.out.println("x,y ?");

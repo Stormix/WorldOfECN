@@ -85,6 +85,7 @@ public abstract class Personnage extends Creature {
   /**
    * Ramasser un ensemble de nourritures Cet méthode applique aussi tous les
    * effets des nourritures consommées
+   * @param nourritures List des nourritures ramassées
    */
   public void setNourritures(List<Nourriture> nourritures) {
     this.nourritures = nourritures;
@@ -150,7 +151,11 @@ public abstract class Personnage extends Creature {
   public void setDistAttMax(int distAttMax) {
     this.distAttMax = distAttMax;
   }
-
+  /**
+   * Vérifie une position donnée s'il y'a des objets à ramasser
+   * @param gameWorld Monde du jeu
+   * @param position Position à vérifier
+   */
   public void checkForPickups(World gameWorld, Point2D position) {
     if (gameWorld.getWorldObjectsMap().containsKey(position)) {
       Objet item = gameWorld.getWorldObjectsMap().get(position);
