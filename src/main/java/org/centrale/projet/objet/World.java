@@ -170,11 +170,21 @@ public class World {
         randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
       }
       if (rndInt.nextInt(100) > 50) {
-        Soin soin = new Soin(rndInt.nextInt(100), 0, randPos);
-        this.worldObjectsMap.put(soin.getPos(), soin);
+        if (rndInt.nextInt(100) > 50) {
+          Soin soin = new Soin(rndInt.nextInt(100), 0, randPos);
+          this.worldObjectsMap.put(soin.getPos(), soin);
+        } else {
+          Carrot carrot = new Carrot(rndInt.nextInt(10), rndInt.nextInt(20), randPos);
+          this.worldObjectsMap.put(carrot.getPos(), carrot);
+        }
       } else {
-        Mana mana = new Mana(rndInt.nextInt(100), 0, randPos);
-        this.worldObjectsMap.put(mana.getPos(), mana);
+        if (rndInt.nextInt(100) > 50) {
+          Mana mana = new Mana(rndInt.nextInt(100), 0, randPos);
+          this.worldObjectsMap.put(mana.getPos(), mana);
+        } else {
+          MagicMushroom magicMushroom = new MagicMushroom(rndInt.nextInt(10), rndInt.nextInt(20), randPos);
+          this.worldObjectsMap.put(magicMushroom.getPos(), magicMushroom);
+        }
       }
     }
   }
@@ -221,7 +231,7 @@ public class World {
       switch (choice) {
         case "D":
           if (joueur.getPerso().deplacer(this, newPos)) {
-            System.out.println(joueur.getPerso().getNom()+" s'est déplacé vers "+newPos);
+            System.out.println(joueur.getPerso().getNom() + " s'est déplacé vers " + newPos);
           } else {
             System.out.println("Position occupé.");
           }
@@ -314,6 +324,10 @@ public class World {
             System.out.print("|💊");
           } else if (estInstanceDe(p, "Mana")) {
             System.out.print("|⚗️ ");
+          } else if (estInstanceDe(p, "Carrot")) {
+            System.out.print("|🥕");
+          } else if (estInstanceDe(p, "MagicMushroom")) {
+            System.out.print("|🍄");
           }
         } else {
           System.out.print("|  ");

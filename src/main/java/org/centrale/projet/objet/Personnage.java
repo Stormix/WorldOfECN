@@ -1,5 +1,8 @@
 package org.centrale.projet.objet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Classe Personnage
  *
@@ -20,6 +23,9 @@ public abstract class Personnage extends Creature {
   private int degMag;
   // distance d'attaque maximal
   private int distAttMax;
+  // Bonus/Malus ramassé
+  private List<Nourriture> nourritures;
+
   /**
    * Constructeur Personnage
    *
@@ -36,7 +42,8 @@ public abstract class Personnage extends Creature {
    * @param pos     position du personnage dans le monde
    * @param ptPar   points par?
    */
-  public Personnage(String nom, int ptV, int ptM, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos, int ptPar) {
+  public Personnage(String nom, int ptV, int ptM, int pA, int pP, int pM, int rM, int dA, int dM, int distMax,
+      Point2D pos, int ptPar) {
     super(ptV, pA, pP, dA, pos, ptPar);
 
     this.nom = nom;
@@ -45,6 +52,7 @@ public abstract class Personnage extends Creature {
     this.pourcentageResistMag = rM;
     this.degMag = dM;
     this.distAttMax = distMax;
+    this.nourritures = new ArrayList<>();
   }
 
   /**
@@ -60,12 +68,39 @@ public abstract class Personnage extends Creature {
     this.pourcentageResistMag = perso.pourcentageResistMag;
     this.degMag = perso.degMag;
     this.distAttMax = perso.distAttMax;
+    this.nourritures = new ArrayList<>();
   }
 
   /**
    * Empty constructor
    */
   public Personnage() {
+    this.nourritures = new ArrayList<>();
+  }
+
+  public List<Nourriture> getNourritures() {
+    return this.nourritures;
+  }
+
+  /**
+   * Ramasser un ensemble de nourritures Cet méthode applique aussi tous les
+   * effets des nourritures consommées
+   */
+  public void setNourritures(List<Nourriture> nourritures) {
+    this.nourritures = nourritures;
+    for (Nourriture nourriture : nourritures) {
+      nourriture.consommer(this);
+    }
+  }
+
+  /**
+   * Ramasser une nourriture
+   * 
+   * @param n Nourriture ramassée
+   */
+  public void addNourriture(Nourriture n) {
+    n.consommer(this);
+    this.nourritures.add(n);
   }
 
   public String getNom() {
@@ -116,30 +151,47 @@ public abstract class Personnage extends Creature {
     this.distAttMax = distAttMax;
   }
 
-  public void checkForPickups(World gameWorld, Point2D position){
+  public void checkForPickups(World gameWorld, Point2D position) {
     if (gameWorld.getWorldObjectsMap().containsKey(position)) {
-      Potion item = (Potion) gameWorld.getWorldObjectsMap().get(position);
+      Objet item = gameWorld.getWorldObjectsMap().get(position);
       String type = ((Object) item).getClass().getName();
-      System.out.println("Potion de type: " + type + " trouvé!");
+      System.out.println("Objet de type: " + type + " trouvé!");
       if (type == "org.centrale.projet.objet.Soin") {
         ((Soin) item).utiliser(this);
         gameWorld.getWorldObjectsMap().remove(position);
-      } else if(type == "org.centrale.projet.objet.Mana") {
+      } else if (type == "org.centrale.projet.objet.Mana") {
         ((Mana) item).utiliser(this);
         gameWorld.getWorldObjectsMap().remove(position);
+      } else if (type == "org.centrale.projet.objet.Carrot") {
+        this.addNourriture((Carrot) item);
+        gameWorld.getWorldObjectsMap().remove(position);
+      } else if (type == "org.centrale.projet.objet.MagicMushroom") {
+        this.addNourriture((MagicMushroom) item);
+        gameWorld.getWorldObjectsMap().remove(position);
+      }
+    }
+  }
+
+  /**
+   * Mettre à jour les nourritures
+   */
+  public void checkNourritures() {
+    int count = this.nourritures.size();
+    for (int i = 0; i < count; i++) {
+      Nourriture n = this.nourritures.get(i);
+      if (n.getDuree() > 0) {
+        this.nourritures.get(i).setDuree(n.getDuree() - 1);
+      } else {
+        n.detruire(this);
+        this.nourritures.remove(i);
       }
     }
   }
 
   @Override
   public String toString() {
-    return "Personnage {" +
-      " nom='" + getNom() + "'" +
-      ", ptMana='" + getPtMana() + "'" +
-      ", pourcentageMag='" + getPourcentageMag() + "'" +
-      ", pourcentageResistMag='" + getPourcentageResistMag() + "'" +
-      ", degMag='" + getDegMag() + "'" +
-      ", distAttMax='" + getDistAttMax() + "'" +
-      "}";
+    return "Personnage {" + " nom='" + getNom() + "'" + ", ptMana='" + getPtMana() + "'" + ", pourcentageMag='"
+        + getPourcentageMag() + "'" + ", pourcentageResistMag='" + getPourcentageResistMag() + "'" + ", degMag='"
+        + getDegMag() + "'" + ", distAttMax='" + getDistAttMax() + "'" + "}";
   }
 }

@@ -6,7 +6,7 @@ public class TestSeance4 {
     // Initialize a new game world
     int worldSize = 30;
     int creatureCount = 50;
-    int itemCount = 15;
+    int itemCount = 20;
     World game = new World(worldSize);
     game.creationJoueur();
     System.out.println(game.getJoueurs());

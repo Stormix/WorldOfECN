@@ -7,7 +7,7 @@ package org.centrale.projet.objet;
  * @version 0.1
  */
 
-public abstract class Creature implements Deplacable {
+public abstract class Creature extends ElementDuJeu implements Deplacable {
   // points vie
   private int ptVie;
   // pourcentage attaque
@@ -16,8 +16,6 @@ public abstract class Creature implements Deplacable {
   private int pourcentagePar;
   // degats d'attaque
   private int degAtt;
-  // position du Creature dans le monde
-  private Point2D pos;
   private int ptPar;
 
   /**
@@ -31,11 +29,11 @@ public abstract class Creature implements Deplacable {
    * @param ptPar points par?
    */
   public Creature(int ptV, int pA, int pP, int dA, Point2D pos, int ptPar) {
+    super(pos);
     this.ptVie = ptV;
     this.pourcentageAtt = pA;
     this.pourcentagePar = pP;
     this.degAtt = dA;
-    this.pos = pos;
     this.ptPar = ptPar;
   }
 
@@ -45,12 +43,12 @@ public abstract class Creature implements Deplacable {
    * @param crea objet Creature
    */
   public Creature(Creature crea) {
+    super(new Point2D(crea.getPos()));
     this.ptVie = crea.ptVie;
     this.pourcentageAtt = crea.pourcentageAtt;
     this.pourcentagePar = crea.pourcentagePar;
     this.degAtt = crea.degAtt;
     this.ptPar = crea.ptPar;
-    this.pos = new Point2D(crea.pos);
   }
 
   /**
@@ -89,14 +87,6 @@ public abstract class Creature implements Deplacable {
 
   public void setDegAtt(int degAtt) {
     this.degAtt = degAtt;
-  }
-
-  public Point2D getPos() {
-    return this.pos;
-  }
-
-  public void setPos(Point2D pos) {
-    this.pos = pos;
   }
 
   public int getPtPar() {
