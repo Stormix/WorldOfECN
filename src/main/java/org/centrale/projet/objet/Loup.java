@@ -9,7 +9,7 @@ import java.util.Random;
  * @version 0.1
  */
 
-public class Loup extends Monstre implements Combattant{
+public class Loup extends Monstre implements Combattant {
 
   /**
    * Constructeur Loup
@@ -48,7 +48,8 @@ public class Loup extends Monstre implements Combattant{
 
   /**
    * Deplacer l'entité
-   * @param gameWorld World
+   *
+   * @param gameWorld   World
    * @param newPosition Nouvelle position
    *
    * @return True si la deplacement est possible
@@ -91,9 +92,10 @@ public class Loup extends Monstre implements Combattant{
       System.out.println(" -> ❌ Trop loin! Distance: " + distance);
     }
   }
+
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Loup " + this.getPtVie() + " " + this.getPourcentageAtt() + " " + this.getPourcentagePar() + " "
+        + this.getDegAtt() + " " + this.getPtPar() + " " + this.getPos().getX() + " " + this.getPos().getY();
   }
 }

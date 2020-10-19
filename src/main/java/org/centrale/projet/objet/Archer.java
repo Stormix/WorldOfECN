@@ -9,7 +9,7 @@ import java.util.Random;
  * @version 0.1
  */
 
-public class Archer extends Personnage implements Combattant{
+public class Archer extends Personnage implements Combattant {
   // Nombre de flèches que posséde l'archer
   private int nbF;
 
@@ -111,7 +111,9 @@ public class Archer extends Personnage implements Combattant{
 
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Archer " +  this.getNom() + " " +this.getPtVie() + " " + this.getPtMana() + " " + this.getPourcentageAtt() + " "
+        + this.getPourcentagePar() + " " + this.getPourcentageMag() + " " + this.getPourcentageResistMag() + " "
+        + this.getDegAtt() + " " + this.getDegMag() + " " + this.getDistAttMax() + " " + this.getPtPar() + " "
+        + this.getPos().getX() + " " + this.getPos().getY();
   }
 }

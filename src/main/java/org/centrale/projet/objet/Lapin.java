@@ -43,7 +43,7 @@ public class Lapin extends Monstre {
   }
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Lapin " + this.getPtVie() + " " + this.getPourcentageAtt() + " " + this.getPourcentagePar() + " "
+        + this.getDegAtt() + " " + this.getPtPar() + " " + this.getPos().getX() + " " + this.getPos().getY();
   }
 }

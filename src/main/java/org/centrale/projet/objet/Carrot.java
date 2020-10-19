@@ -56,7 +56,6 @@ public class Carrot extends Nourriture{
 
     @Override
     public String getSaveLine() {
-      // TODO Auto-generated method stub
-      return null;
+      return "Carrot " + this.getValue() + " " + this.getPos().getX() + " " + this.getPos().getY();
     }
 }

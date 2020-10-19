@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * Classe Joueur
- * 
+ *
  * @author Groupe 10
  * @version 0.1
  */
@@ -17,7 +17,6 @@ public class Joueur implements Sauvegardable {
    * Player Contructor
    */
   public Joueur() {
-    this.createCharacter();
   }
 
   public void createCharacter() {
@@ -90,7 +89,6 @@ public class Joueur implements Sauvegardable {
   }
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Joueur " + this.perso.getSaveLine();
   }
 }

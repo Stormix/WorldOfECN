@@ -2,7 +2,7 @@ package org.centrale.projet.objet;
 
 /**
  * Classe NuageToxique
- * 
+ *
  * @author Groupe 10
  * @version 0.1
  */
@@ -79,7 +79,6 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
 
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "NuageToxique " + this.getDegat() + " " + this.getPos().getX() + " " + this.getPos().getY();
   }
 }

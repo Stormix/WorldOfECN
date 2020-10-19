@@ -71,6 +71,7 @@ public class World {
    */
   public void creationJoueur() {
     Joueur player = new Joueur();
+    player.createCharacter();
     Point2D freePos = this.getRandomFreePosition();
     player.getPerso().setPos(freePos);
     this.joueurs.add(player);
@@ -299,49 +300,43 @@ public class World {
     for (int i = -1; i < this.worldHeight; i++) {
       for (int j = -1; j < this.worldWidth; j++) {
         if (j == -1) {
-          if (i > 9) {
-            System.out.print(" " + i + "  ");
-          } else {
-            System.out.print(" " + i + "   ");
-          }
+          System.out.printf(" %02d ", i);
           continue;
         }
         if (i == -1) {
-          if (i > 9) {
-            System.out.print(j);
-          } else {
-            System.out.print(j + "  ");
-          }
+          System.out.printf(" %02d ", j);
           continue;
         }
         Creature c = this.worldMap.get(new Point2D(i, j));
         Objet p = this.worldObjectsMap.get(new Point2D(i, j));
         if (c != null) {
           if (estInstanceDe(c, "Guerrier")) {
-            System.out.print("|🗡️");
+            System.out.print("|🗡️ ");
           } else if (estInstanceDe(c, "Archer")) {
-            System.out.print("|🏹");
+            System.out.print("|🏹 ");
           } else if (estInstanceDe(c, "Mage")) {
-            System.out.print("|🧙");
+            System.out.print("|🧙 ");
           } else if (estInstanceDe(c, "Paysan")) {
-            System.out.print("|👨‍🌾");
+            System.out.print("| P ");
           } else if (estInstanceDe(c, "Loup")) {
-            System.out.print("|🐺");
+            System.out.print("|🐺 ");
           } else if (estInstanceDe(c, "Lapin")) {
-            System.out.print("|🐰");
+            System.out.print("|🐰 ");
           }
         } else if (p != null) {
           if (estInstanceDe(p, "Soin")) {
-            System.out.print("|💊");
+            System.out.print("|💊 ");
           } else if (estInstanceDe(p, "Mana")) {
-            System.out.print("|⚗️ ");
+            System.out.print("|⚗️  ");
           } else if (estInstanceDe(p, "Carrot")) {
-            System.out.print("|🥕");
+            System.out.print("|🥕 ");
           } else if (estInstanceDe(p, "MagicMushroom")) {
-            System.out.print("|🍄");
+            System.out.print("|🍄 ");
+          } else if (estInstanceDe(p, "NuageToxique")) {
+            System.out.print("|☁️  ");
           }
         } else {
-          System.out.print("|  ");
+          System.out.print("|   ");
         }
         if (j == this.worldWidth - 1) {
           System.out.print("|");
@@ -349,6 +344,7 @@ public class World {
       }
       System.out.println("");
     }
+    // System.out.println("\033[H\033[2J"); // Clear screen
   }
 
   public HashMap<Point2D, Creature> getWorldMap() {
@@ -365,5 +361,9 @@ public class World {
 
   public void setWorldObjectsMap(HashMap<Point2D, Objet> worldObjectsMap) {
     this.worldObjectsMap = worldObjectsMap;
+  }
+
+  public void ajouterJoueur(Joueur j) {
+    this.joueurs.add(j);
   }
 }

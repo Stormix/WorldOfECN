@@ -47,7 +47,6 @@ public class Mana extends Potion {
 
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Mana " + this.getValue() + " " + this.getPos().getX() + " " + this.getPos().getY();
   }
 }

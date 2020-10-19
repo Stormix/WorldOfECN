@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Game",
+      "request": "launch",
+      "mainClass": "org.centrale.projet.objet.Game",
+      "projectName": "ProjetTP"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - TestSeance6",
       "request": "launch",
       "mainClass": "org.centrale.projet.objet.TestSeance6",

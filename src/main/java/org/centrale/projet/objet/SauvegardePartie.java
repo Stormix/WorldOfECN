@@ -1,58 +1,65 @@
 package org.centrale.projet.objet;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ *
+ */
 public class SauvegardePartie {
-  String filename;
+  String filepath;
   BufferedWriter bWriter;
 
-  public SauvegardePartie(String filename) {
+  public SauvegardePartie(String filepath) {
     try {
-      this.filename = filename;
-      this.bWriter = new BufferedWriter(new FileWriter(filename));
+      int i = 0;
+      File f = new File(filepath);
+      while (f.exists()) {
+        f = new File(filepath.split(".txt")[0] + (i++) + ".txt");
+      }
+      this.filepath = f.getAbsolutePath();
+      this.bWriter = new BufferedWriter(new FileWriter(f.getAbsolutePath()));
     } catch (Exception e) {
-      // TODO: handle exception
       e.printStackTrace();
-      System.err.println("Haha exception go brrrr");
     }
   }
 
   public void writeLine(String line) {
     try {
-      this.bWriter.write(line);
-      this.bWriter.newLine();
+      this.bWriter.write(line + "\n");
     } catch (Exception e) {
-      //TODO: handle exception
       e.printStackTrace();
     }
   }
 
-  public void creer(World world) {
-
-    if (this.bWriter == null) {
-      throw new Error("Ohoho stinky");
+  public void sauvegarderPartie(World world) {
+    List<Point2D> playersCharacters = new ArrayList<Point2D>();
+    this.writeLine("Hauteur " + world.getWorldHeight());
+    this.writeLine("Largeur " + world.getWorldWidth());
+    for (Joueur j : world.getJoueurs()) {
+      this.writeLine(j.getSaveLine());
+      playersCharacters.add(j.getPerso().getPos());
     }
-    this.writeLine("Hauteur "+ world.getWorldHeight());
-    this.writeLine("Largeur "+ world.getWorldWidth());
-    // Save characters & monsters
-    // TODO check for duplicate characters
     for (Creature c : world.getWorldMap().values()) {
-      this.writeLine(c.getSaveLine());
+      // Skip player characters
+      if (!playersCharacters.contains(c.getPos())) {
+        this.writeLine(c.getSaveLine());
+      }
     }
     for (Objet c : world.getWorldObjectsMap().values()) {
       this.writeLine(c.getSaveLine());
-    }
-    for (Joueur j : world.getJoueurs()) {
-      this.writeLine(j.getSaveLine());
     }
     try {
       this.bWriter.flush();
       this.bWriter.close();
     } catch (Exception e) {
-      //TODO: handle exception
       e.printStackTrace();
     }
+
+    System.out.println("Saved to " + this.filepath + "!");
   }
 
 }

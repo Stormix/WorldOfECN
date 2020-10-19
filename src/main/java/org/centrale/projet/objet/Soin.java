@@ -52,7 +52,6 @@ public class Soin extends Potion {
 
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Soin " + this.getValue() + " " + this.getPos().getX() + " " + this.getPos().getY();
   }
 }

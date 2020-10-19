@@ -8,5 +8,7 @@ public class TestSeance6 {
     if (game != null) {
       game.afficheWorld();
     }
+    SauvegardePartie saver = new SauvegardePartie("worlds/world.txt");
+    saver.sauvegarderPartie(game);
   }
 }

@@ -65,7 +65,9 @@ public class Paysan extends Personnage {
 
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Paysan " +  this.getNom() + " " +this.getPtVie() + " " + this.getPtMana() + " " + this.getPourcentageAtt() + " "
+        + this.getPourcentagePar() + " " + this.getPourcentageMag() + " " + this.getPourcentageResistMag() + " "
+        + this.getDegAtt() + " " + this.getDegMag() + " " + this.getDistAttMax() + " " + this.getPtPar() + " "
+        + this.getPos().getX() + " " + this.getPos().getY();
   }
 }

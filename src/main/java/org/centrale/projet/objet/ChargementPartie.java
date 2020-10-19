@@ -1,13 +1,14 @@
 package org.centrale.projet.objet;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class ChargementPartie {
-  String filename;
+  String filepath;
   BufferedReader bufferedReader;
 
   List<String> characterTypes = new ArrayList<>(List.of("guerrier", "mage", "voleur", "archer", "paysan"));
@@ -16,28 +17,33 @@ public class ChargementPartie {
   List<String> playerTypes = new ArrayList<>(List.of("joueur"));
   List<String> worldSizeTypes = new ArrayList<>(List.of("hauteur", "largeur"));
 
-  public ChargementPartie(String filename) {
+  public ChargementPartie(String filepath) {
     try {
-      this.filename = filename;
-      this.bufferedReader = new BufferedReader(new FileReader(filename));
+      File f = new File(filepath);
+      if (!f.exists() || f.isDirectory()) {
+        System.err.println(filepath + " doesn't exist or is a directory!");
+        return;
+      }
+      this.filepath = filepath;
+      this.bufferedReader = new BufferedReader(new FileReader(filepath));
     } catch (Exception e) {
-      // TODO: handle exception
       e.printStackTrace();
-      System.err.println("Haha exception go brrrr");
     }
   }
 
   public World chargerPartie() {
+    System.out.println("> Loading "+this.filepath + ". Please wait...");
+    World world = null;
     try {
       String line = this.bufferedReader.readLine();
+      String delimiters = " ,.;";
+      String type;
+      int largeur = 0;
+      int hauteur = 0;
       while (line != null) {
-        System.out.println("Line: " + line);
-        String delimiters = " ,.;";
-        String type;
+        System.out.print("Line: " + line + "...");
         StringTokenizer tokenizer = new StringTokenizer(line, delimiters);
         type = tokenizer.hasMoreTokens() ? tokenizer.nextToken().toLowerCase() : null;
-        Integer largeur = 25;
-        Integer hauteur = 25;
         if (worldSizeTypes.contains(type)) {
           switch (type) {
             case "largeur":
@@ -48,24 +54,26 @@ public class ChargementPartie {
               break;
           }
         }
-        World world = new World(largeur, hauteur);
+        if (largeur > 0 && hauteur > 0 && world == null) {
+          world = new World(largeur, hauteur);
+        }
         Joueur player = null;
         if (playerTypes.contains(type)) {
           player = new Joueur();
-          type = tokenizer.nextToken();
+          type = tokenizer.nextToken().toLowerCase();
         }
         if (characterTypes.contains(type)) {
           String nom = tokenizer.nextToken();
-          Integer ptV = Integer.parseInt(tokenizer.nextToken());
-          Integer ptM = Integer.parseInt(tokenizer.nextToken());
-          Integer pA = Integer.parseInt(tokenizer.nextToken());
-          Integer pP = Integer.parseInt(tokenizer.nextToken());
-          Integer pM = Integer.parseInt(tokenizer.nextToken());
-          Integer rM = Integer.parseInt(tokenizer.nextToken());
-          Integer dA = Integer.parseInt(tokenizer.nextToken());
-          Integer dM = Integer.parseInt(tokenizer.nextToken());
-          Integer distMax = Integer.parseInt(tokenizer.nextToken());
-          Integer ptPar = Integer.parseInt(tokenizer.nextToken());
+          int ptV = Integer.parseInt(tokenizer.nextToken());
+          int ptM = Integer.parseInt(tokenizer.nextToken());
+          int pA = Integer.parseInt(tokenizer.nextToken());
+          int pP = Integer.parseInt(tokenizer.nextToken());
+          int pM = Integer.parseInt(tokenizer.nextToken());
+          int rM = Integer.parseInt(tokenizer.nextToken());
+          int dA = Integer.parseInt(tokenizer.nextToken());
+          int dM = Integer.parseInt(tokenizer.nextToken());
+          int distMax = Integer.parseInt(tokenizer.nextToken());
+          int ptPar = Integer.parseInt(tokenizer.nextToken());
           Point2D pos = new Point2D(Integer.parseInt(tokenizer.nextToken()), Integer.parseInt(tokenizer.nextToken()));
           Personnage character = null;
           switch (type) {
@@ -78,8 +86,7 @@ public class ChargementPartie {
               world.getWorldMap().put(pos, character);
               break;
             case "voleur":
-              // TODO: !!!
-              System.out.println("Not implemented yet");
+              System.out.println("Not implemented yet.");
               break;
             case "archer":
               character = new Archer(nom, ptV, pA, pP, pM, rM, dA, dM, distMax, pos, 25, ptPar);
@@ -94,15 +101,18 @@ public class ChargementPartie {
 
           if (player != null && character != null) {
             player.setPerso(character);
+            world.ajouterJoueur(player);
+            player = null;
+            character = null;
           }
         }
 
         if (monsterTypes.contains(type)) {
-          Integer ptV = Integer.parseInt(tokenizer.nextToken());
-          Integer pA = Integer.parseInt(tokenizer.nextToken());
-          Integer pP = Integer.parseInt(tokenizer.nextToken());
-          Integer dA = Integer.parseInt(tokenizer.nextToken());
-          Integer ptPar = Integer.parseInt(tokenizer.nextToken());
+          int ptV = Integer.parseInt(tokenizer.nextToken());
+          int pA = Integer.parseInt(tokenizer.nextToken());
+          int pP = Integer.parseInt(tokenizer.nextToken());
+          int dA = Integer.parseInt(tokenizer.nextToken());
+          int ptPar = Integer.parseInt(tokenizer.nextToken());
           Point2D pos = new Point2D(Integer.parseInt(tokenizer.nextToken()), Integer.parseInt(tokenizer.nextToken()));
           switch (type) {
             case "loup":
@@ -115,7 +125,7 @@ public class ChargementPartie {
         }
 
         if (objectTypes.contains(type)) {
-          Integer value = Integer.parseInt(tokenizer.nextToken());
+          int value = Integer.parseInt(tokenizer.nextToken());
           Point2D pos = new Point2D(Integer.parseInt(tokenizer.nextToken()), Integer.parseInt(tokenizer.nextToken()));
           switch (type) {
             case "soin":
@@ -135,16 +145,14 @@ public class ChargementPartie {
               break;
           }
         }
-
+        System.out.println("Created!");
         line = this.bufferedReader.readLine();
       }
       this.bufferedReader.close();
 
-      return null;
+      return world;
     } catch (Exception e) {
-      // TODO: handle exception
       e.printStackTrace();
-      System.err.println("Haha exception go brrrr");
       return null;
     }
   }

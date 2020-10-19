@@ -1,6 +1,7 @@
 package org.centrale.projet.objet;
 
 import java.util.Random;
+
 /**
  * Classe Mage
  *
@@ -25,7 +26,8 @@ public class Mage extends Personnage implements Combattant {
    * @param pos     position du personnage dans le monde
    * @param ptPar   points par?
    */
-  public Mage(String nom, int pV, int ptMana, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos, int ptPar) {
+  public Mage(String nom, int pV, int ptMana, int pA, int pP, int pM, int rM, int dA, int dM, int distMax, Point2D pos,
+      int ptPar) {
     super(nom, pV, ptMana, pA, pP, pM, rM, dA, dM, distMax, pos, ptPar);
   }
 
@@ -46,9 +48,8 @@ public class Mage extends Personnage implements Combattant {
 
   @Override
   public String toString() {
-    return getNom() + ": Mage(ptV: " + getPtVie() + ",PtMana: " + getPtMana()
-        + ",%Mag: " + getPourcentageMag() + ",degAtt: " + getDegAtt()
-        + ",Pos: " + getPos() + ")";
+    return getNom() + ": Mage(ptV: " + getPtVie() + ",PtMana: " + getPtMana() + ",%Mag: " + getPourcentageMag()
+        + ",degAtt: " + getDegAtt() + ",Pos: " + getPos() + ")";
   }
 
   /**
@@ -90,9 +91,12 @@ public class Mage extends Personnage implements Combattant {
       return false;
     }
   }
+
   @Override
   public String getSaveLine() {
-    // TODO Auto-generated method stub
-    return null;
+    return "Mage " +  this.getNom() + " " +this.getPtVie() + " " + this.getPtMana() + " " + this.getPourcentageAtt() + " "
+        + this.getPourcentagePar() + " " + this.getPourcentageMag() + " " + this.getPourcentageResistMag() + " "
+        + this.getDegAtt() + " " + this.getDegMag() + " " + this.getDistAttMax() + " " + this.getPtPar() + " "
+        + this.getPos().getX() + " " + this.getPos().getY();
   }
 }
