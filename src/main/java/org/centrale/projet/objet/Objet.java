@@ -6,7 +6,7 @@ package org.centrale.projet.objet;
  * @author Groupe 10
  * @version 0.1
  */
-public abstract class Objet extends ElementDuJeu {
+public abstract class Objet extends ElementDuJeu implements Sauvegardable {
   private int price;
   private boolean used;
 

@@ -50,8 +50,14 @@ public class MagicMushroom extends Nourriture{
 
     @Override
     public void detruire(Personnage p) {
-        if(this.getDuree() == 0){
-            p.setDegAtt(p.getDegAtt()+ this.getValue());
-        }
+      if (this.getDuree() == 0) {
+        p.setDegAtt(p.getDegAtt() + this.getValue());
+      }
     }
+
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

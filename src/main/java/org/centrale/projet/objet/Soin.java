@@ -36,17 +36,23 @@ public class Soin extends Potion {
   }
 
   public void utiliser(Creature c) {
-    if (this.isUsed()){
+    if (this.isUsed()) {
       System.out.print("Potion vide. \n");
       return;
     }
-    if(this.getPos().distance(c.getPos()) != 0) {
+    if (this.getPos().distance(c.getPos()) != 0) {
       System.out.print("Besoin d'être près de la potion pour l'utiliser. \n");
       return;
     }
     c.setPtVie(c.getPtVie() + this.value);
-    System.out.print("Potion consomée ! +"+this.getValue()+"PtVie -> PtVie:"+ c.getPtVie()+" \n");
+    System.out.print("Potion consomée ! +" + this.getValue() + "PtVie -> PtVie:" + c.getPtVie() + " \n");
 
     this.setUsed(true);
+  }
+
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

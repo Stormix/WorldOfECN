@@ -14,7 +14,8 @@ import java.util.Scanner;
 public class World {
 
   // World size (assuming the world map is square)
-  private final int worldSize;
+  private final int worldWidth;
+  private final int worldHeight;
   private HashMap<Point2D, Creature> worldMap; // Creature Layer
   private HashMap<Point2D, Objet> worldObjectsMap; // Object Layer (e.g: Potions)
   private ArrayList<Joueur> joueurs = new ArrayList<>();
@@ -22,14 +23,14 @@ public class World {
   /**
    * Constructeur World
    *
-   * @param worldSize  Taille du monde (on suppose que le monde est carrée)
-   * @param population (int) nombre de protagonistes à crée
+   * @param worldWidth  Largeur du monde
+   * @param worldHeight Hauteur du monde
    */
-  public World(int worldSize, int population) {
-    this.worldSize = worldSize;
+  public World(int worldWidth, int worldHeight) {
+    this.worldWidth = worldWidth;
+    this.worldHeight = worldHeight;
     this.worldMap = new HashMap<>();
     this.worldObjectsMap = new HashMap<>();
-    this.creeMondeAlea(population);
   }
 
   /**
@@ -38,28 +39,28 @@ public class World {
    * @param worldSize Taille du monde (on suppose que le monde est carrée)
    */
   public World(int worldSize) {
-    this.worldSize = worldSize;
+    this.worldWidth = worldSize;
+    this.worldHeight = worldSize;
     this.worldMap = new HashMap<>();
     this.worldObjectsMap = new HashMap<>();
-    this.creeMondeAlea(100);
   }
 
   /**
    * Constructeur World
    */
   public World() {
-    this.worldSize = 100;
+    this.worldWidth = 100;
+    this.worldHeight = 100;
     this.worldMap = new HashMap<>();
     this.worldObjectsMap = new HashMap<>();
-    this.creeMondeAlea(100);
   }
 
   /**
    * Generates a "random world"
    *
-   * @param population (int) nombre de protagonistes à crée
+   * @param populationSize (int) nombre de protagonistes à crée
    */
-  public void creeMondeAlea(int population) {
+  public void creeMondeAlea(int populationSize) {
 
   }
 
@@ -99,9 +100,9 @@ public class World {
    */
   public Point2D getRandomFreePosition() {
     Random rndInt = new Random();
-    Point2D randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+    Point2D randPos = new Point2D(rndInt.nextInt(this.worldWidth), rndInt.nextInt(this.worldHeight));
     while (this.worldMap.containsKey(randPos)) {
-      randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+      randPos = new Point2D(rndInt.nextInt(this.worldWidth), rndInt.nextInt(this.worldHeight));
     }
     return randPos;
   }
@@ -121,9 +122,9 @@ public class World {
   public void randomPopulation(int populationSize) {
     Random rndInt = new Random();
     for (int i = 0; i < populationSize; i++) {
-      Point2D randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+      Point2D randPos = new Point2D(rndInt.nextInt(this.worldWidth), rndInt.nextInt(this.worldHeight));
       while (!this.isValidPos(randPos)) {
-        randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+        randPos = new Point2D(rndInt.nextInt(this.worldWidth), rndInt.nextInt(this.worldHeight));
       }
       Archer agent = new Archer("Archer #" + i, 0, 0, 0, 0, 0, 0, 0, 0, randPos, 0, 0);
       this.worldMap.put(agent.getPos(), agent);
@@ -131,6 +132,15 @@ public class World {
     for (Point2D p : this.getWorldMap().keySet()) {
       System.out.println("(" + p.getX() + "," + p.getY() + ")");
     }
+
+  }
+
+  public int getWorldWidth() {
+    return this.worldWidth;
+  }
+
+  public int getWorldHeight() {
+    return this.worldHeight;
   }
 
   /**
@@ -142,9 +152,9 @@ public class World {
   public void randomCreaturePopulation(int populationSize) {
     Random rndInt = new Random();
     for (int i = 0; i < populationSize; i++) {
-      Point2D randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+      Point2D randPos = new Point2D(rndInt.nextInt(this.worldWidth), rndInt.nextInt(this.worldHeight));
       while (!this.isValidPos(randPos)) {
-        randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+        randPos = new Point2D(rndInt.nextInt(this.worldWidth), rndInt.nextInt(this.worldHeight));
       }
       if (rndInt.nextInt(100) > 50) {
         Loup loup = new Loup(75, rndInt.nextInt(100), rndInt.nextInt(100), 10, randPos, 10);
@@ -165,9 +175,9 @@ public class World {
   public void randomItems(int itemCount) {
     Random rndInt = new Random();
     for (int i = 0; i < itemCount; i++) {
-      Point2D randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+      Point2D randPos = new Point2D(rndInt.nextInt(this.worldWidth), rndInt.nextInt(this.worldHeight));
       while (!this.isValidPos(randPos)) {
-        randPos = new Point2D(rndInt.nextInt(this.worldSize), rndInt.nextInt(this.worldSize));
+        randPos = new Point2D(rndInt.nextInt(this.worldWidth), rndInt.nextInt(this.worldHeight));
       }
       if (rndInt.nextInt(100) > 50) {
         if (rndInt.nextInt(100) > 50) {
@@ -286,8 +296,8 @@ public class World {
    * Affichage du monde
    */
   public void afficheWorld() {
-    for (int i = -1; i < this.worldSize; i++) {
-      for (int j = -1; j < this.worldSize; j++) {
+    for (int i = -1; i < this.worldHeight; i++) {
+      for (int j = -1; j < this.worldWidth; j++) {
         if (j == -1) {
           if (i > 9) {
             System.out.print(" " + i + "  ");
@@ -333,16 +343,12 @@ public class World {
         } else {
           System.out.print("|  ");
         }
-        if (j == this.worldSize - 1) {
+        if (j == this.worldWidth - 1) {
           System.out.print("|");
         }
       }
       System.out.println("");
     }
-  }
-
-  public int getWorldSize() {
-    return this.worldSize;
   }
 
   public HashMap<Point2D, Creature> getWorldMap() {

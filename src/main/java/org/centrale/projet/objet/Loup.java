@@ -91,4 +91,9 @@ public class Loup extends Monstre implements Combattant{
       System.out.println(" -> ❌ Trop loin! Distance: " + distance);
     }
   }
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

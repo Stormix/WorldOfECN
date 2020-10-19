@@ -90,4 +90,9 @@ public class Mage extends Personnage implements Combattant {
       return false;
     }
   }
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

@@ -18,7 +18,7 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
 
     /**
      * Constructeur Nuage Toxique
-     * 
+     *
      * @param rayon rayon du nuage
      * @param degat Dégat
      * @param pos   Position du centre de nuage
@@ -74,6 +74,12 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
     }
 
     public void setRayon(int rayon) {
-        this.rayon = rayon;
+      this.rayon = rayon;
     }
+
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

@@ -25,7 +25,7 @@ public class Carrot extends Nourriture{
         super(duree, value);
         this.setPos(pos);
     }
-    
+
     /**
      * Constructeur Carrot
      */
@@ -52,5 +52,11 @@ public class Carrot extends Nourriture{
         if(this.getDuree() == 0){
             p.setDistAttMax(p.getDistAttMax() - this.getValue());
         }
+    }
+
+    @Override
+    public String getSaveLine() {
+      // TODO Auto-generated method stub
+      return null;
     }
 }

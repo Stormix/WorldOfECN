@@ -96,7 +96,7 @@ public abstract class Personnage extends Creature {
 
   /**
    * Ramasser une nourriture
-   * 
+   *
    * @param n Nourriture ramassée
    */
   public void addNourriture(Nourriture n) {

@@ -41,4 +41,9 @@ public class Lapin extends Monstre {
       return false;
     }
   }
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

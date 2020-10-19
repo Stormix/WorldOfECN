@@ -7,7 +7,7 @@ package org.centrale.projet.objet;
  * @version 0.1
  */
 
-public abstract class Creature extends ElementDuJeu implements Deplacable {
+public abstract class Creature extends ElementDuJeu implements Deplacable, Sauvegardable {
   // points vie
   private int ptVie;
   // pourcentage attaque
@@ -112,4 +112,9 @@ public abstract class Creature extends ElementDuJeu implements Deplacable {
    * Move the entity to one of its empty neighbour positions
    */
   public abstract Boolean deplacer(World gameWorld, Point2D newPos);
+
+   /**
+   * Representation de l'objet dans le fichier de sauvegarde
+   */
+  public abstract String getSaveLine();
 }

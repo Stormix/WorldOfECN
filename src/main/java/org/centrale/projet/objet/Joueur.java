@@ -10,7 +10,7 @@ import java.util.Set;
  * @author Groupe 10
  * @version 0.1
  */
-public class Joueur {
+public class Joueur implements Sauvegardable {
   private Personnage perso;
 
   /**
@@ -87,5 +87,10 @@ public class Joueur {
 
   public void setPerso(Personnage perso) {
     this.perso = perso;
+  }
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

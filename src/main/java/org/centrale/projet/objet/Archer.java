@@ -95,6 +95,7 @@ public class Archer extends Personnage implements Combattant{
       System.out.println(" -> ❌ Trop proche/loin! Distance: " + distance);
     }
   }
+
   public Boolean deplacer(World gameWorld, Point2D newPosition) {
     if (!gameWorld.getWorldMap().containsKey(newPosition)) {
       gameWorld.getWorldMap().put(newPosition, this);
@@ -106,5 +107,11 @@ public class Archer extends Personnage implements Combattant{
       System.out.println("Position déjà occupée.");
       return false;
     }
+  }
+
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

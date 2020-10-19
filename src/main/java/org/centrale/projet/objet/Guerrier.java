@@ -90,4 +90,10 @@ public class Guerrier extends Personnage implements Combattant{
       return false;
     }
   }
+
+  @Override
+  public String getSaveLine() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }
