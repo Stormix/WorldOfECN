@@ -37,7 +37,6 @@ public class Lapin extends Monstre {
       this.getPos().setPosition(newPosition.getX(), newPosition.getY());
       return true;
     } else {
-      System.out.println("Position déjà occupée.");
       return false;
     }
   }

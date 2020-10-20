@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * Savegame loader class
+ *
+ * @author Groupe 10
+ * @version 0.1
+ */
 public class ChargementPartie {
   String filepath;
   BufferedReader bufferedReader;
@@ -17,6 +23,11 @@ public class ChargementPartie {
   List<String> playerTypes = new ArrayList<>(List.of("joueur"));
   List<String> worldSizeTypes = new ArrayList<>(List.of("hauteur", "largeur"));
 
+  /**
+   * Constructor
+   *
+   * @param filepath savegame filepath
+   */
   public ChargementPartie(String filepath) {
     try {
       File f = new File(filepath);
@@ -30,9 +41,12 @@ public class ChargementPartie {
       e.printStackTrace();
     }
   }
-
+  /**
+   * Creates a game world instance using the loaded savegame
+   * @return world instance
+   */
   public World chargerPartie() {
-    System.out.println("> Loading "+this.filepath + ". Please wait...");
+    System.out.println("> Loading " + this.filepath + ". Please wait...");
     World world = null;
     try {
       String line = this.bufferedReader.readLine();

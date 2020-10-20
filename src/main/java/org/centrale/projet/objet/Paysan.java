@@ -58,7 +58,6 @@ public class Paysan extends Personnage {
       this.checkForPickups(gameWorld, newPosition);
       return true;
     } else {
-      System.out.println("Position déjà occupée." + gameWorld.getWorldMap().get(newPosition));
       return false;
     }
   }

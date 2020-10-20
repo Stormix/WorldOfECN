@@ -227,30 +227,37 @@ public class World {
     System.out.println("Start of turn.");
     for (Joueur joueur : joueurs) {
       if (joueur.getPerso().getPtVie() <= 0) {
-        System.out.println("💀 " + joueur.getPerso().getNom() + " est mort. Nous allons sauter son tour.");
+        System.out.println("💀 " + joueur + " est mort. Nous allons sauter son tour.");
         if (this.getWorldMap().containsKey(joueur.getPerso().getPos())) {
           this.getWorldMap().remove(joueur.getPerso().getPos()); // Removing from map
+        }
+        if (joueurs.size() == 1) {
+          System.out.println("Game over!");
+          System.exit(0);
         }
         continue;
       }
       joueur.getPerso().checkNourritures();
-      System.out.println("Que voulez-vous faire " + joueur.getPerso().getNom() + " ? D: se déplacer | A: attaquer");
-      String choice = input.next();
-      System.out.println("x,y ?");
-      String position = input.next();
-      String[] coordinates = position.split(",");
-      Point2D newPos = new Point2D(Integer.parseInt(coordinates[1]), Integer.parseInt(coordinates[0]));
-      switch (choice) {
+
+      String[] gameOptions = { "A", "D", "Q", "S" };
+      String command = Game.getUserInput(joueur + " (A/D/Q/S) > ", gameOptions, input);
+      String action = String.valueOf(command.charAt(0));
+      Point2D newPos = Game.parsePosition(command);
+      if (newPos == null && (action.equals("D") || action.equals("A"))) {
+        System.out.println("> Invalid position !");
+        continue;
+      }
+      switch (action) {
         case "D":
           if (joueur.getPerso().deplacer(this, newPos)) {
-            System.out.println(joueur.getPerso().getNom() + " s'est déplacé vers " + newPos);
+            System.out.println("> " + joueur + " s'est déplacé vers " + newPos);
           } else {
-            System.out.println("Position occupé.");
+            System.out.println("> Position occupé.");
           }
           break;
         case "A":
           if (!this.getWorldMap().containsKey(newPos)) {
-            System.out.println("??????");
+            System.out.println("> Invalid target !");
             return;
           }
           Creature c = this.getWorldMap().get(newPos);
@@ -265,8 +272,33 @@ public class World {
             }
           }
           break;
+
+        case "S":
+          try {
+            String filepath = Game.getUserInput(" > Path (.txt) ? ", null, input);
+            SauvegardePartie savegame = new SauvegardePartie(filepath);
+            savegame.sauvegarderPartie(this);
+          } catch (Exception e) {
+            System.err.println("Something went wrong, failed to save world.");
+          }
+
+          break;
+        case "Q":
+          String[] quitOptions = { "Y", "N" };
+          String quitCmd = Game.getUserInput(" > Save game ? ", quitOptions, input);
+          if (quitCmd.equals("Y")) {
+            try {
+              String filepath = Game.getUserInput(" > Path (.txt) ? ", null, input);
+              SauvegardePartie savegame = new SauvegardePartie(filepath);
+              savegame.sauvegarderPartie(this);
+            } catch (Exception e) {
+              System.err.println("Something went wrong, failed to save world.");
+            }
+          }
+          System.exit(0);
+          break;
         default:
-          System.out.println("Action inconnue.");
+          System.out.println("> Action inconnue.");
           break;
       }
     }
@@ -290,7 +322,7 @@ public class World {
         }
       }
     }
-    System.out.println("End of turn.");
+    System.out.println("> End of turn.");
   }
 
   /**
@@ -344,7 +376,13 @@ public class World {
       }
       System.out.println("");
     }
-    // System.out.println("\033[H\033[2J"); // Clear screen
+    // Legende
+    System.out.println("\n\n##################### Légende ##################");
+    System.out.println("## 🗡️: Guerrier  🏹 Archer  🧙 Mage  P Paysan  ##");
+    System.out.println("## 🐺: Loup      🐰: Lapin                    ##");
+    System.out.println("## 💊: Soin      ⚗️: Mana   🥕: Carotte        ##");
+    System.out.println("## 🍄: Champignon magique   ☁️: Nuage Toxique  ##");
+    System.out.println("################################################");
   }
 
   public HashMap<Point2D, Creature> getWorldMap() {

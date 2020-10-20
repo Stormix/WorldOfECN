@@ -87,7 +87,6 @@ public class Mage extends Personnage implements Combattant {
       this.checkForPickups(gameWorld, newPosition);
       return true;
     } else {
-      System.out.println("Position déjà occupée.");
       return false;
     }
   }

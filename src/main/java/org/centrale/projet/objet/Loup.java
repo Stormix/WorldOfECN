@@ -59,7 +59,6 @@ public class Loup extends Monstre implements Combattant {
       this.getPos().setPosition(newPosition.getX(), newPosition.getY());
       return true;
     } else {
-      System.out.println("Position déjà occupée.");
       return false;
     }
   }
@@ -81,7 +80,7 @@ public class Loup extends Monstre implements Combattant {
         if (rand > this.getPourcentagePar()) {
           damage = this.getDegAtt();
         } else {
-          damage = this.getDegAtt() - c.getPtPar();
+          damage = Math.max(this.getDegAtt() - c.getPtPar(), 0);
         }
         c.setPtVie(c.getPtVie() - damage);
         System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);

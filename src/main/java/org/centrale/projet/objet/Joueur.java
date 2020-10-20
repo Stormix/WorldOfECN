@@ -87,6 +87,14 @@ public class Joueur implements Sauvegardable {
   public void setPerso(Personnage perso) {
     this.perso = perso;
   }
+
+
+  @Override
+  public String toString() {
+    return "Joueur (" + this.perso.getClass().getSimpleName() + ")";
+  }
+
+
   @Override
   public String getSaveLine() {
     return "Joueur " + this.perso.getSaveLine();

@@ -18,6 +18,7 @@ public class TestSeance4 {
     game.randomCreaturePopulation(creatureCount);
     game.randomItems(itemCount);
     while (true) {
+      System.out.println("\033[H\033[2J"); // Clear screen
       game.afficheWorld();
       game.tourDeJeu();
     }

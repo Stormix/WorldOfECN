@@ -7,12 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Game saver class
  *
+ * @author Groupe 10
+ * @version 0.1
  */
 public class SauvegardePartie {
   String filepath;
   BufferedWriter bWriter;
-
+/**
+ * Constructor
+ * @param filepath savegfame location
+ */
   public SauvegardePartie(String filepath) {
     try {
       int i = 0;
@@ -34,7 +40,10 @@ public class SauvegardePartie {
       e.printStackTrace();
     }
   }
-
+  /**
+   * Save a game world into a text file
+   * @param world world instance
+   */
   public void sauvegarderPartie(World world) {
     List<Point2D> playersCharacters = new ArrayList<Point2D>();
     this.writeLine("Hauteur " + world.getWorldHeight());

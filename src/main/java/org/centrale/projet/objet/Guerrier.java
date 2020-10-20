@@ -1,6 +1,7 @@
 package org.centrale.projet.objet;
 
 import java.util.Random;
+
 /**
  * Classe Guerrier
  *
@@ -65,7 +66,7 @@ public class Guerrier extends Personnage implements Combattant{
           damage = this.getDegAtt();
           System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
         } else {
-          damage = this.getDegAtt() - c.getPtPar();
+          damage = Math.max(this.getDegAtt() - c.getPtPar(), 0);
           System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
         }
         c.setPtVie(c.getPtVie() - damage);
@@ -86,7 +87,6 @@ public class Guerrier extends Personnage implements Combattant{
       this.checkForPickups(gameWorld, newPosition);
       return true;
     } else {
-      System.out.println("Position déjà occupée.");
       return false;
     }
   }
