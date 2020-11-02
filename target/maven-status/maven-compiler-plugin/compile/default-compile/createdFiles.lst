@@ -9,6 +9,7 @@ org\centrale\projet\objet\SauvegardePartie.class
 org\centrale\projet\objet\TestSeance3LinkedListForI.class
 org\centrale\projet\objet\Lapin.class
 org\centrale\projet\objet\NuageToxique.class
+org\centrale\projet\objet\Voleur.class
 org\centrale\projet\objet\Mage.class
 org\centrale\projet\objet\TestSeance21.class
 org\centrale\projet\objet\Creature.class

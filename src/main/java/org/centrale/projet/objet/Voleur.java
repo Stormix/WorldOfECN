@@ -68,7 +68,7 @@ public class Voleur extends Personnage implements Combattant {
   /**
    * Voler un objet d'un des personnages
    *
-   * @param p
+   * @param p personnage
    */
   public void voler(Personnage p) {
     System.out.println("💸  " + this.getNom() + " essaie de voler des pieces de " + p);
