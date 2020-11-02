@@ -174,16 +174,16 @@ public abstract class Personnage extends Creature {
       Objet item = gameWorld.getWorldObjectsMap().get(position);
       String type = ((Object) item).getClass().getSimpleName();
       System.out.println("  Objet de type: " + type + " trouvé!");
-      if (type == "org.centrale.projet.objet.Soin") {
+      if (type == "Soin") {
         ((Soin) item).utiliser(this);
         gameWorld.getWorldObjectsMap().remove(position);
-      } else if (type == "org.centrale.projet.objet.Mana") {
+      } else if (type == "Mana") {
         ((Mana) item).utiliser(this);
         gameWorld.getWorldObjectsMap().remove(position);
-      } else if (type == "org.centrale.projet.objet.Carrot") {
+      } else if (type == "Carrot") {
         this.addNourriture((Carrot) item);
         gameWorld.getWorldObjectsMap().remove(position);
-      } else if (type == "org.centrale.projet.objet.MagicMushroom") {
+      } else if (type == "MagicMushroom") {
         this.addNourriture((MagicMushroom) item);
         gameWorld.getWorldObjectsMap().remove(position);
       }
