@@ -172,18 +172,18 @@ public abstract class Personnage extends Creature {
   public void checkForPickups(World gameWorld, Point2D position) {
     if (gameWorld.getWorldObjectsMap().containsKey(position)) {
       Objet item = gameWorld.getWorldObjectsMap().get(position);
-      String type = ((Object) item).getClass().getSimpleName();
-      System.out.println("  Objet de type: " + type + " trouvé!");
-      if (type == "Soin") {
+      String type = ((Object) item).getClass().getName();
+      System.out.println("  Objet de type: " + ((Object) item).getClass().getSimpleName() + " trouvé!");
+      if (type == "org.centrale.projet.objet.Soin") {
         ((Soin) item).utiliser(this);
         gameWorld.getWorldObjectsMap().remove(position);
-      } else if (type == "Mana") {
+      } else if (type == "org.centrale.projet.objet.Mana") {
         ((Mana) item).utiliser(this);
         gameWorld.getWorldObjectsMap().remove(position);
-      } else if (type == "Carrot") {
+      } else if (type == "org.centrale.projet.objet.Carrot") {
         this.addNourriture((Carrot) item);
         gameWorld.getWorldObjectsMap().remove(position);
-      } else if (type == "MagicMushroom") {
+      } else if (type == "org.centrale.projet.objet.MagicMushroom") {
         this.addNourriture((MagicMushroom) item);
         gameWorld.getWorldObjectsMap().remove(position);
       }
