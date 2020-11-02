@@ -54,9 +54,9 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
         if (distance < this.rayon) {
             int damage = this.getDegat();
             c.setPtVie(c.getPtVie() - damage);
-            System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
+            System.out.println(" -> * Attaque réussi! -" + damage + "HP au " + c);
         } else {
-            System.out.println(" -> ❌ Trop loin! Distance: " + distance);
+            System.out.println(" -> X  Trop loin! Distance: " + distance);
         }
 
     }

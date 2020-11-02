@@ -66,7 +66,7 @@ public class Archer extends Personnage implements Combattant {
   @Override
   public String toString() {
     return getNom() + ": Archer(ptV: " + getPtVie() + ",%Att: " + getPourcentageAtt() + ",degAtt: " + getDegAtt()
-        + ",Pos: " + getPos() + ",nbF: " + getNbF() + "🏹" + ")";
+        + ",Pos: " + getPos() + ",nbF: " + getNbF() + ")";
   }
 
   /**
@@ -79,7 +79,7 @@ public class Archer extends Personnage implements Combattant {
     System.out.println("⚔️  " + this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (this.getNbF() == 0) {
-      System.out.println(" -> ❌ Plus de flèches..");
+      System.out.println(" -> X  Plus de flèches..");
       return;
     }
     if (distance > 1 && distance <= this.getDistAttMax()) {
@@ -87,12 +87,12 @@ public class Archer extends Personnage implements Combattant {
       if (rInt.nextInt(100) + 1 <= this.getPourcentageAtt()) {
         int damage = this.getDegAtt();
         c.setPtVie(c.getPtVie() - damage);
-        System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
+        System.out.println(" -> * Attaque réussi! -" + damage + "HP au " + c);
       } else {
-        System.out.println(" -> ❌ " + this.getNom() + ": attaque ratée!");
+        System.out.println(" -> X  " + this.getNom() + ": attaque ratée!");
       }
     } else {
-      System.out.println(" -> ❌ Trop proche/loin! Distance: " + distance);
+      System.out.println(" -> X  Trop proche/loin! Distance: " + distance);
     }
   }
 

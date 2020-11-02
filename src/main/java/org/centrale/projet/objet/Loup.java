@@ -69,7 +69,7 @@ public class Loup extends Monstre implements Combattant {
    * @param c Creature
    */
   public void combattre(Creature c) {
-    System.out.println("🐺  Loup  essaie d'attaquer " + c);
+    System.out.println("  Loup  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (distance == 1) {
       Random rInt = new Random();
@@ -83,12 +83,12 @@ public class Loup extends Monstre implements Combattant {
           damage = Math.max(this.getDegAtt() - c.getPtPar(), 0);
         }
         c.setPtVie(c.getPtVie() - damage);
-        System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
+        System.out.println(" -> * Attaque réussi! -" + damage + "HP au " + c);
       } else {
-        System.out.println(" -> ❌ Attaque du loup ratée!");
+        System.out.println(" -> X  Attaque du loup ratée!");
       }
     } else {
-      System.out.println(" -> ❌ Trop loin! Distance: " + distance);
+      System.out.println(" -> X  Trop loin! Distance: " + distance);
     }
   }
 

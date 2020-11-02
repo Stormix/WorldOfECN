@@ -232,7 +232,7 @@ public class World {
     System.out.println("> Start of turn.");
     for (Joueur joueur : joueurs) {
       if (joueur.getPerso().getPtVie() <= 0) {
-        System.out.println("💀 " + joueur + " est mort. Nous allons sauter son tour.");
+        System.out.println("  +  " + joueur + " est mort. Nous allons sauter son tour.");
         if (this.getWorldMap().containsKey(joueur.getPerso().getPos())) {
           this.getWorldMap().remove(joueur.getPerso().getPos()); // Removing from map
         }
@@ -330,7 +330,7 @@ public class World {
     for (Point2D pos : creaturePositions) {
       Creature c = this.getWorldMap().get(pos);
       if (c != null && c.getPtVie() <= 0) {
-        System.out.println("💀 " + c + " est mort.");
+        System.out.println("  +  " + c + " est mort.");
         this.getWorldMap().remove(pos);
         continue;
       }
@@ -369,31 +369,31 @@ public class World {
         Objet p = this.worldObjectsMap.get(new Point2D(x, y));
         if (c != null) {
           if (estInstanceDe(c, "Guerrier")) {
-            System.out.print("|🗡️ ");
+            System.out.print("| G ");
           } else if (estInstanceDe(c, "Archer")) {
-            System.out.print("|🏹 ");
+            System.out.print("| A ");
           } else if (estInstanceDe(c, "Mage")) {
-            System.out.print("|🧙 ");
+            System.out.print("| M ");
           } else if (estInstanceDe(c, "Paysan")) {
             System.out.print("| P ");
           } else if (estInstanceDe(c, "Voleur")) {
             System.out.print("| V ");
           } else if (estInstanceDe(c, "Loup")) {
-            System.out.print("|🐺 ");
+            System.out.print("| L ");
           } else if (estInstanceDe(c, "Lapin")) {
-            System.out.print("|🐰 ");
+            System.out.print("|Lp ");
           }
         } else if (p != null) {
           if (estInstanceDe(p, "Soin")) {
-            System.out.print("|💊 ");
+            System.out.print("|S  ");
           } else if (estInstanceDe(p, "Mana")) {
-            System.out.print("|⚗️  ");
+            System.out.print("|PM ");
           } else if (estInstanceDe(p, "Carrot")) {
-            System.out.print("|🥕 ");
+            System.out.print("| C ");
           } else if (estInstanceDe(p, "MagicMushroom")) {
-            System.out.print("|🍄 ");
+            System.out.print("|MM ");
           } else if (estInstanceDe(p, "NuageToxique")) {
-            System.out.print("|☁️  ");
+            System.out.print("|NT ");
           }
         } else {
           System.out.print("|   ");
@@ -406,10 +406,10 @@ public class World {
     }
     // Legende
     System.out.println("\n\n##################### Légende ##################");
-    System.out.println("## 🗡️: Guerrier  🏹 Archer  🧙 Mage  P Paysan  ##");
-    System.out.println("## V : Voleur    🐺: Loup    🐰: Lapin          ##");
-    System.out.println("## 💊: Soin      ⚗️: Mana   🥕: Carotte        ##");
-    System.out.println("## 🍄: Champignon magique   ☁️: Nuage Toxique  ##");
+    System.out.println("## G: Guerrier   A Archer  M  Mage  P Paysan  ##");
+    System.out.println("## V : Voleur    L : Loup    Lp: Lapin        ##");
+    System.out.println("## S : Soin      PM: Mana   C : Carotte       ##");
+    System.out.println("## MM : Champignon magique  NT: Nuage Toxique ##");
     System.out.println("################################################");
     System.out.println("##        N: new game     L: load game        ##");
     System.out.println("##        Q: quit                             ##");

@@ -68,12 +68,12 @@ public class Guerrier extends Personnage implements Combattant{
           damage = Math.max(this.getDegAtt() - c.getPtPar(), 0);
         }
         c.setPtVie(c.getPtVie() - damage);
-        System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
+        System.out.println(" -> * Attaque réussi! -" + damage + "HP au " + c);
       } else {
-        System.out.println(" -> ❌ " + this.getNom() + ": attaque ratée!");
+        System.out.println(" -> X  " + this.getNom() + ": attaque ratée!");
       }
     } else {
-      System.out.println(" -> ❌ Trop loin! Distance: " + distance);
+      System.out.println(" -> X  Trop loin! Distance: " + distance);
     }
   }
 

@@ -61,7 +61,7 @@ public class Mage extends Personnage implements Combattant {
     System.out.println("⚔️  " + this.getNom() + "  essaie d'attaquer " + c);
     float distance = this.getPos().distance(c.getPos());
     if (this.getPtMana() == 0) {
-      System.out.println(" -> ❌ Plus de Mana..");
+      System.out.println(" -> X  Plus de Mana..");
       return;
     }
     if (distance >= 1 && distance < this.getDistAttMax()) {
@@ -70,12 +70,12 @@ public class Mage extends Personnage implements Combattant {
       if (rInt.nextInt(100) + 1 <= this.getPourcentageAtt()) {
         int damage = this.getDegMag();
         c.setPtVie(c.getPtVie() - damage);
-        System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
+        System.out.println(" -> * Attaque réussi! -" + damage + "HP au " + c);
       } else {
-        System.out.println(" -> ❌ " + this.getNom() + ": attaque ratée!");
+        System.out.println(" -> X  " + this.getNom() + ": attaque ratée!");
       }
     } else {
-      System.out.println(" -> ❌ Trop loin! Distance: " + distance);
+      System.out.println(" -> X  Trop loin! Distance: " + distance);
     }
   }
 
