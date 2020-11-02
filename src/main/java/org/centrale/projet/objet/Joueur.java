@@ -49,7 +49,7 @@ public class Joueur implements Sauvegardable {
       int dM = 0;
       int distMax = rng.nextInt(10) + 1;
       int ptPar = rng.nextInt(50) + 1;
-      int nbF = 10;
+      int nbF = 25;
 
       switch (choice) {
         case "Archer":
