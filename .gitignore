@@ -24,3 +24,6 @@ hs_err_pid*
 
 # docs
 target/site/apidocs
+
+#
+.DS_Store
