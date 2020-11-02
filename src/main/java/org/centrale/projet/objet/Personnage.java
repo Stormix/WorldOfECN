@@ -25,6 +25,8 @@ public abstract class Personnage extends Creature {
   private int distAttMax;
   // Bonus/Malus ramassé
   private List<Nourriture> nourritures;
+  // Nbre de pieces
+  private int coins;
 
   /**
    * Constructeur Personnage
@@ -53,6 +55,7 @@ public abstract class Personnage extends Creature {
     this.degMag = dM;
     this.distAttMax = distMax;
     this.nourritures = new ArrayList<>();
+    this.coins = 0;
   }
 
   /**
@@ -69,6 +72,7 @@ public abstract class Personnage extends Creature {
     this.degMag = perso.degMag;
     this.distAttMax = perso.distAttMax;
     this.nourritures = new ArrayList<>();
+    this.coins = perso.coins;
   }
 
   /**
@@ -151,6 +155,15 @@ public abstract class Personnage extends Creature {
   public void setDistAttMax(int distAttMax) {
     this.distAttMax = distAttMax;
   }
+
+  public int getCoins() {
+    return this.coins;
+  }
+
+  public void setCoins(int coins) {
+    this.coins = coins;
+  }
+
   /**
    * Vérifie une position donnée s'il y'a des objets à ramasser
    * @param gameWorld Monde du jeu

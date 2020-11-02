@@ -1,0 +1,18 @@
+Hauteur 20
+Largeur 20
+Joueur Mage Anas 17 61 80 20 96 52 44 15 7 17 15 10
+Voleur VoleurAnonyme 75 0 7 83 0 86 10 0 1 1 14 10
+Loup 75 86 67 10 10 14 17
+Loup 75 5 64 10 10 19 2
+Loup 75 24 74 10 10 10 4
+Lapin 75 58 64 1 1 10 1
+Loup 75 42 88 10 10 7 3
+Lapin 75 33 39 1 1 6 8
+Voleur VoleurAnonyme 75 0 64 57 0 58 10 0 1 10 7 13
+Voleur VoleurAnonyme 75 0 34 66 0 64 10 0 1 2 19 18
+Loup 75 45 98 10 10 0 19
+Soin 61 4 4
+MagicMushroom 16 2 10
+Soin 4 12 14
+Soin 47 17 9
+Soin 47 8 17

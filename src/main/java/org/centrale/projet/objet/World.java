@@ -72,6 +72,7 @@ public class World {
   public void creationJoueur() {
     Joueur player = new Joueur();
     player.createCharacter();
+    player.getPerso().setCoins(100); // Gift the player 100 coins
     Point2D freePos = this.getRandomFreePosition();
     player.getPerso().setPos(freePos);
     this.joueurs.add(player);
@@ -145,8 +146,7 @@ public class World {
   }
 
   /**
-   * Génère plusieurs créatures aléatoirement espacées d'une distance supérieure à
-   * 3 unités
+   * Génère plusieurs créatures aléatoirement
    *
    * @param populationSize Nbre de creature.
    */
@@ -164,14 +164,17 @@ public class World {
         Lapin lapin = new Lapin(75, rndInt.nextInt(100), rndInt.nextInt(100), 1, randPos, 1);
         this.worldMap.put(lapin.getPos(), lapin);
       }
+      if (rndInt.nextInt(100) > 75) {
+        Voleur voleur = new Voleur("VoleurAnonyme", 75, rndInt.nextInt(100), rndInt.nextInt(100), 0, rndInt.nextInt(100), 10, 0, 1, randPos, rndInt.nextInt(30));
+        this.worldMap.put(voleur.getPos(), voleur);
+      }
     }
   }
 
   /**
-   * Génère plusieurs potions aléatoirement espacées d'une distance supérieure à 3
-   * unités
+   * Génère plusieurs potions aléatoirement
    *
-   * @param itemCount Nbre de creature.
+   * @param itemCount Nbre de potions.
    */
   public void randomItems(int itemCount) {
     Random rndInt = new Random();
@@ -302,6 +305,24 @@ public class World {
           break;
       }
     }
+    // Les voleurs vont essayer de voler les pieces des charactères proches
+    for (Point2D pos : this.getWorldMap().keySet()) {
+      Creature c = this.getWorldMap().get(pos);
+      if (c != null && estInstanceDe(c, "Voleur")) {
+        Voleur v = (Voleur) c;
+        int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+        int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
+        for (int i = 0; i < dy.length; i++) {
+          Point2D newPos = new Point2D(v.getPos().getX() + dx[i], v.getPos().getY() + dy[i]);
+          if (this.getWorldMap().containsKey(newPos)) {
+            Creature target = this.getWorldMap().get(newPos);
+            if (Personnage.class.isAssignableFrom(target.getClass())) {
+              v.voler((Personnage) target);
+            }
+          }
+        }
+      }
+    }
     // Wolves will attack any surrounding creatures
     for (Point2D pos : this.getWorldMap().keySet()) {
       Creature c = this.getWorldMap().get(pos);
@@ -350,6 +371,8 @@ public class World {
             System.out.print("|🧙 ");
           } else if (estInstanceDe(c, "Paysan")) {
             System.out.print("| P ");
+          } else if (estInstanceDe(c, "Voleur")) {
+            System.out.print("| V ");
           } else if (estInstanceDe(c, "Loup")) {
             System.out.print("|🐺 ");
           } else if (estInstanceDe(c, "Lapin")) {
@@ -379,7 +402,7 @@ public class World {
     // Legende
     System.out.println("\n\n##################### Légende ##################");
     System.out.println("## 🗡️: Guerrier  🏹 Archer  🧙 Mage  P Paysan  ##");
-    System.out.println("## 🐺: Loup      🐰: Lapin                    ##");
+    System.out.println("## V : Voleur    🐺: Loup    🐰: Lapin          ##");
     System.out.println("## 💊: Soin      ⚗️: Mana   🥕: Carotte        ##");
     System.out.println("## 🍄: Champignon magique   ☁️: Nuage Toxique  ##");
     System.out.println("################################################");

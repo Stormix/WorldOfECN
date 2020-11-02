@@ -14,14 +14,15 @@ import java.util.StringTokenizer;
  * @version 0.1
  */
 public class ChargementPartie {
-  String filepath;
-  BufferedReader bufferedReader;
+  private String filepath;
+  private BufferedReader bufferedReader;
 
-  List<String> characterTypes = new ArrayList<>(List.of("guerrier", "mage", "voleur", "archer", "paysan"));
-  List<String> monsterTypes = new ArrayList<>(List.of("loup", "lapin"));
-  List<String> objectTypes = new ArrayList<>(List.of("nuagetoxique", "soin", "mana", "magicmushroom", "carrot"));
-  List<String> playerTypes = new ArrayList<>(List.of("joueur"));
-  List<String> worldSizeTypes = new ArrayList<>(List.of("hauteur", "largeur"));
+  private List<String> characterTypes = new ArrayList<>(List.of("guerrier", "mage", "voleur", "archer", "paysan"));
+  private List<String> monsterTypes = new ArrayList<>(List.of("loup", "lapin"));
+  private List<String> objectTypes = new ArrayList<>(
+      List.of("nuagetoxique", "soin", "mana", "magicmushroom", "carrot"));
+  private List<String> playerTypes = new ArrayList<>(List.of("joueur"));
+  private List<String> worldSizeTypes = new ArrayList<>(List.of("hauteur", "largeur"));
 
   /**
    * Constructor
@@ -41,8 +42,10 @@ public class ChargementPartie {
       e.printStackTrace();
     }
   }
+
   /**
    * Creates a game world instance using the loaded savegame
+   *
    * @return world instance
    */
   public World chargerPartie() {
@@ -100,7 +103,8 @@ public class ChargementPartie {
               world.getWorldMap().put(pos, character);
               break;
             case "voleur":
-              System.out.println("Not implemented yet.");
+              character = new Voleur(nom, ptV, pA, pP, pM, rM, dA, dM, distMax, pos, ptPar);
+              world.getWorldMap().put(pos, character);
               break;
             case "archer":
               character = new Archer(nom, ptV, pA, pP, pM, rM, dA, dM, distMax, pos, 25, ptPar);
