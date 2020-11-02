@@ -42,7 +42,7 @@ public class Carrot extends Nourriture{
         if(this.getDuree() > 0 && !this.isUsed()){
             this.setUsed(true);
             p.setDistAttMax(p.getDistAttMax() + this.getValue());
-            System.out.println("Vous venez de consommer un ("+ this+")");
+            System.out.println("  Vous venez de consommer un ("+ this+")");
             this.setDuree(this.getDuree() - 1);
         }
     }

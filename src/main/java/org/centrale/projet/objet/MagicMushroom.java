@@ -43,7 +43,7 @@ public class MagicMushroom extends Nourriture{
         if(this.getDuree() > 0 && !this.isUsed()){
             this.setUsed(true);
             p.setDegAtt(Math.max(0, p.getDegAtt()- this.getValue()));
-            System.out.println("Vous venez de consommer un ("+ this+")");
+            System.out.println("  Vous venez de consommer un ("+ this+")");
             this.setDuree(this.getDuree() - 1);
         }
     }

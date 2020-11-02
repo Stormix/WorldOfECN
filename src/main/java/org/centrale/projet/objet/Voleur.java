@@ -102,12 +102,11 @@ public class Voleur extends Personnage implements Combattant {
         int damage;
         if (rInt.nextInt(100) + 1 > this.getPourcentagePar()) {
           damage = this.getDegAtt();
-          System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
         } else {
           damage = Math.max(this.getDegAtt() - c.getPtPar(), 0);
-          System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
         }
         c.setPtVie(c.getPtVie() - damage);
+        System.out.println(" -> 💥 Attaque réussi! -" + damage + "HP au " + c);
       } else {
         System.out.println(" -> ❌ " + this.getNom() + ": attaque ratée!");
       }

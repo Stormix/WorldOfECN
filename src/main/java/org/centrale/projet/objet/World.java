@@ -2,8 +2,10 @@ package org.centrale.projet.objet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * World Class
@@ -227,7 +229,7 @@ public class World {
    */
   public void tourDeJeu() {
     Scanner input = new Scanner(System.in);
-    System.out.println("Start of turn.");
+    System.out.println("> Start of turn.");
     for (Joueur joueur : joueurs) {
       if (joueur.getPerso().getPtVie() <= 0) {
         System.out.println("💀 " + joueur + " est mort. Nous allons sauter son tour.");
@@ -243,7 +245,7 @@ public class World {
       joueur.getPerso().checkNourritures();
 
       String[] gameOptions = { "A", "D", "Q", "S" };
-      String command = Game.getUserInput(joueur + " (A/D/Q/S) > ", gameOptions, input);
+      String command = Game.getUserInput("> "+joueur + " \n  (A/D/Q/S) > ", gameOptions, input);
       String action = String.valueOf(command.charAt(0));
       Point2D newPos = Game.parsePosition(command);
       if (newPos == null && (action.equals("D") || action.equals("A"))) {
@@ -253,7 +255,7 @@ public class World {
       switch (action) {
         case "D":
           if (joueur.getPerso().deplacer(this, newPos)) {
-            System.out.println("> " + joueur + " s'est déplacé vers " + newPos);
+            System.out.println("> " + joueur + " \n  s'est déplacé vers " + newPos);
           } else {
             System.out.println("> Position occupé.");
           }
@@ -323,15 +325,18 @@ public class World {
         }
       }
     }
-    // Wolves will attack any surrounding creatures
-    for (Point2D pos : this.getWorldMap().keySet()) {
+
+    Set<Point2D> creaturePositions = new HashSet<>(this.getWorldMap().keySet());
+    for (Point2D pos : creaturePositions) {
       Creature c = this.getWorldMap().get(pos);
+      if (c != null && c.getPtVie() <= 0) {
+        System.out.println("💀 " + c + " est mort.");
+        this.getWorldMap().remove(pos);
+        continue;
+      }
+      // Wolves will attack any surrounding creatures
       if (c != null && estInstanceDe(c, "Loup")) {
         Loup loup = (Loup) c;
-        if (c.getPtVie() <= 0) {
-          System.out.println("💀 le Loup est mort. Nous allons sauter son tour.");
-          continue;
-        }
         int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
         int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
@@ -350,18 +355,18 @@ public class World {
    * Affichage du monde
    */
   public void afficheWorld() {
-    for (int i = -1; i < this.worldHeight; i++) {
-      for (int j = -1; j < this.worldWidth; j++) {
-        if (j == -1) {
-          System.out.printf(" %02d ", i);
+    for (int y = -1; y < this.worldHeight; y++) {
+      for (int x = -1; x < this.worldWidth; x++) {
+        if (x == -1) {
+          System.out.printf(" %02d ", y);
           continue;
         }
-        if (i == -1) {
-          System.out.printf(" %02d ", j);
+        if (y == -1) {
+          System.out.printf(" %02d ", x);
           continue;
         }
-        Creature c = this.worldMap.get(new Point2D(i, j));
-        Objet p = this.worldObjectsMap.get(new Point2D(i, j));
+        Creature c = this.worldMap.get(new Point2D(x, y));
+        Objet p = this.worldObjectsMap.get(new Point2D(x, y));
         if (c != null) {
           if (estInstanceDe(c, "Guerrier")) {
             System.out.print("|🗡️ ");
@@ -393,7 +398,7 @@ public class World {
         } else {
           System.out.print("|   ");
         }
-        if (j == this.worldWidth - 1) {
+        if (x == this.worldWidth - 1) {
           System.out.print("|");
         }
       }
@@ -405,6 +410,12 @@ public class World {
     System.out.println("## V : Voleur    🐺: Loup    🐰: Lapin          ##");
     System.out.println("## 💊: Soin      ⚗️: Mana   🥕: Carotte        ##");
     System.out.println("## 🍄: Champignon magique   ☁️: Nuage Toxique  ##");
+    System.out.println("################################################");
+    System.out.println("##        N: new game     L: load game        ##");
+    System.out.println("##        Q: quit                             ##");
+    System.out.println("##        ------ Game controls ------         ##");
+    System.out.println("##        A X,Y: Attack   D X,Y: move         ##");
+    System.out.println("##        S: save game                        ##");
     System.out.println("################################################");
   }
 

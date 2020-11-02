@@ -91,7 +91,7 @@ public class Joueur implements Sauvegardable {
 
   @Override
   public String toString() {
-    return "Joueur (" + this.perso.getClass().getSimpleName() + ")";
+    return "Joueur (" + this.perso + ")";
   }
 
 

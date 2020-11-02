@@ -45,12 +45,21 @@ public class Game {
     String res = sc.nextLine();
     if (options != null) {
       List<String> Options = new ArrayList<>(Arrays.asList(options));
-      String command = String.valueOf(res.charAt(0));
-      while (!Options.contains(command)) {
+      String command = null;
+      try {
+        command = String.valueOf(res.charAt(0));
+      } catch (Exception e) {
+        // Do nothing for now
+      }
+      while (command == null || !Options.contains(command)) {
         System.out.println("Invalid input ! Possible commands: " + Options);
         System.out.print(question);
         res = sc.nextLine();
-        command = String.valueOf(res.charAt(0));
+        try {
+          command = String.valueOf(res.charAt(0));
+        } catch (Exception e) {
+          // Do nothing for now
+        }
       }
     }
     return res.strip();
@@ -101,7 +110,7 @@ public class Game {
     System.out.println(" | $$$    \\$$$ \\$$    $$| $$     \\");
     System.out.println("  \\$$      \\$$  \\$$$$$$  \\$$$$$$$$");
     System.out.println("");
-    System.out.println(" By: Anas Mazouni & Pierre Bourreau");
+    // System.out.println(" By: Anas Mazouni & Pierre Bourreau");
     System.out.println("");
     System.out.println("######################################");
     System.out.println("##   N: new game     L: load game   ##");
@@ -118,9 +127,9 @@ public class Game {
       game = Game.loadGame(Game.getUserInput("> Savegame path ? ", null, sc));
     }
     if (choice.equals("N")) {
-      int worldSize = Integer.parseInt(Game.getUserInput("> World size ? ", null, sc));
-      int creatureCount = Integer.parseInt(Game.getUserInput("> Creature count ? ", null, sc));
-      int itemCount = Integer.parseInt(Game.getUserInput("> Item count ? ", null, sc));
+      int worldSize = Integer.parseInt(Game.getUserInput("> World size (ex: 20) ? ", null, sc));
+      int creatureCount = Integer.parseInt(Game.getUserInput("> Creature count (ex: 20) ? ", null, sc));
+      int itemCount = Integer.parseInt(Game.getUserInput("> Item count (ex: 10) ? ", null, sc));
       game = Game.newGame(worldSize, creatureCount, itemCount);
     }
     if (choice.equals("Q")) {
